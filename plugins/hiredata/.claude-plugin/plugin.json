@@ -1,0 +1,27 @@
+{
+  "name": "hiredata",
+  "version": "0.1.0",
+  "description": "Plan and build recruitment automations using HireData skills and its official MCP server.",
+  "author": {
+    "name": "HireData",
+    "email": "support@hiredata.com",
+    "url": "https://www.hiredata.com"
+  },
+  "homepage": "https://help.hiredata.com/apps/mcp/connect-hiredata-to-your-ai-assistant",
+  "repository": "https://github.com/HireData/skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "recruitment",
+    "staffing",
+    "automation",
+    "email",
+    "whatsapp",
+    "forms"
+  ],
+  "mcpServers": {
+    "hiredata": {
+      "type": "http",
+      "url": "https://api.hiredata.com/mcp"
+    }
+  }
+}
