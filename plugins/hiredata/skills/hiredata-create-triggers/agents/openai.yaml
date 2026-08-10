@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Create Triggers"
+  short_description: "Design and create reliable HireData triggers"
+  default_prompt: "Use $hiredata-create-triggers to design and safely create a trigger for this recruitment workflow."

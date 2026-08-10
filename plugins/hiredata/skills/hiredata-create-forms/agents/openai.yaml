@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Create Forms"
+  short_description: "Design recruitment forms for HireData"
+  default_prompt: "Use $hiredata-create-forms to design and safely create a HireData form for this workflow."

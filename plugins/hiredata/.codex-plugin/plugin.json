@@ -1,0 +1,49 @@
+{
+  "name": "hiredata",
+  "version": "0.1.0",
+  "description": "Plan and build recruitment automations using HireData skills and its official MCP server.",
+  "author": {
+    "name": "HireData",
+    "email": "support@hiredata.com",
+    "url": "https://www.hiredata.com"
+  },
+  "homepage": "https://help.hiredata.com/apps/mcp/connect-hiredata-to-your-ai-assistant",
+  "repository": "https://github.com/HireData/skills",
+  "license": "Apache-2.0",
+  "keywords": [
+    "recruitment",
+    "staffing",
+    "automation",
+    "email",
+    "whatsapp",
+    "forms"
+  ],
+  "skills": "./skills/",
+  "mcpServers": {
+    "hiredata": {
+      "type": "http",
+      "url": "https://api.hiredata.com/mcp"
+    }
+  },
+  "interface": {
+    "displayName": "HireData",
+    "shortDescription": "Recruitment automation skills",
+    "longDescription": "Plan high-impact recruitment automations and create triggers, forms, emails, and WhatsApp templates using HireData's live workspace context and controlled actions.",
+    "developerName": "HireData",
+    "category": "Business & Operations",
+    "capabilities": [
+      "Plan recruitment automations",
+      "Create and improve templates",
+      "Use live HireData workspace context"
+    ],
+    "websiteURL": "https://www.hiredata.com",
+    "privacyPolicyURL": "https://www.hiredata.com/privacy-policy",
+    "termsOfServiceURL": "https://www.hiredata.com/terms-of-service",
+    "supportURL": "https://help.hiredata.com",
+    "defaultPrompt": [
+      "Find the highest-impact HireData automation opportunity in my workspace.",
+      "Create a candidate availability workflow and show me a preview.",
+      "Review my templates and identify the most important gap."
+    ]
+  }
+}

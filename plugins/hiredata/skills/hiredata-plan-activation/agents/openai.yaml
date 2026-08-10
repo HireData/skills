@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Plan Activation"
+  short_description: "Plan a high-impact HireData activation"
+  default_prompt: "Use $hiredata-plan-activation to turn this recruitment problem into a prioritized HireData automation plan."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Create Email Templates"
+  short_description: "Create effective HireData email templates"
+  default_prompt: "Use $hiredata-create-email-templates to design and safely create an email template for this HireData workflow."

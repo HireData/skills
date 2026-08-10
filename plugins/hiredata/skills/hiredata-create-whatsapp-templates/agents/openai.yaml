@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Create WhatsApp Templates"
+  short_description: "Create compliant HireData WhatsApp templates"
+  default_prompt: "Use $hiredata-create-whatsapp-templates to design and safely create a WhatsApp template for this HireData workflow."
