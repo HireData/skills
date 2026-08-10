@@ -24,7 +24,6 @@ plugins/hiredata/skills/   Installable, self-contained skills
 evals/                     Stable behavioral regression cases and rubric
 scripts/validate_repo.py   Dependency-free structural and eval validation
 CONTRIBUTING.md            Contribution and quality requirements
-TEAM_ASSIGNMENT.md         Internal kickoff assignment
 INSTALL.md                 Plugin and MCP connection instructions
 ```
 
