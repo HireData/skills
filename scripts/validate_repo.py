@@ -188,6 +188,66 @@ class Validator:
         if resolved != PLUGIN_DIR.resolve():
             self.fail("marketplace hiredata path must resolve to plugins/hiredata")
 
+    def validate_claude_manifests(self) -> None:
+        """Validate the Claude plugin manifests and their parity with the Codex ones."""
+        codex_manifest = self.load_json(PLUGIN_DIR / ".codex-plugin" / "plugin.json")
+        if not isinstance(codex_manifest, dict):
+            codex_manifest = {}
+
+        plugin_path = PLUGIN_DIR / ".claude-plugin" / "plugin.json"
+        if not plugin_path.is_file():
+            self.fail("plugins/hiredata/.claude-plugin/plugin.json is missing")
+            return
+        plugin = self.load_json(plugin_path)
+        if not isinstance(plugin, dict):
+            self.fail("Claude plugin.json must contain an object")
+            return
+
+        for field in ("name", "version", "description", "author", "homepage", "repository", "license", "mcpServers"):
+            if not plugin.get(field):
+                self.fail(f"Claude plugin.json is missing {field}")
+        if not SEMVER_PATTERN.fullmatch(str(plugin.get("version", ""))):
+            self.fail("Claude plugin.json version must be semantic versioning")
+
+        servers = plugin.get("mcpServers", {})
+        server = servers.get("hiredata", {}) if isinstance(servers, dict) else {}
+        if server.get("type") != "http" or server.get("url") != "https://api.hiredata.com/mcp":
+            self.fail("Claude plugin.json must configure the official HireData HTTP MCP endpoint")
+
+        # Parity: the two host manifests must describe the same plugin release.
+        for field in ("name", "version", "description", "repository", "license", "keywords"):
+            if plugin.get(field) != codex_manifest.get(field):
+                self.fail(f"Claude and Codex plugin.json disagree on {field}")
+        if plugin.get("mcpServers") != codex_manifest.get("mcpServers"):
+            self.fail("Claude and Codex plugin.json disagree on mcpServers")
+
+        marketplace_path = ROOT / ".claude-plugin" / "marketplace.json"
+        if not marketplace_path.is_file():
+            self.fail(".claude-plugin/marketplace.json is missing")
+            return
+        marketplace = self.load_json(marketplace_path)
+        if not isinstance(marketplace, dict):
+            self.fail("Claude marketplace.json must contain an object")
+            return
+        if marketplace.get("name") != "hiredata-skills":
+            self.fail("Claude marketplace.json name must be hiredata-skills")
+        owner = marketplace.get("owner", {})
+        if not isinstance(owner, dict) or not owner.get("name"):
+            self.fail("Claude marketplace.json owner.name is required")
+
+        plugins = marketplace.get("plugins", [])
+        entry = next((item for item in plugins if isinstance(item, dict) and item.get("name") == "hiredata"), None)
+        if not entry:
+            self.fail("Claude marketplace.json must list the hiredata plugin")
+            return
+        source = entry.get("source")
+        if not isinstance(source, str):
+            self.fail("Claude marketplace hiredata source must be a relative path string")
+        elif (ROOT / source).resolve() != PLUGIN_DIR.resolve():
+            self.fail("Claude marketplace hiredata source must resolve to plugins/hiredata")
+        if entry.get("version") != plugin.get("version"):
+            self.fail("Claude marketplace entry version must match Claude plugin.json version")
+
     def validate_evals(self, skill_names: set[str]) -> None:
         submission = self.load_json(ROOT / "evals" / "submission-cases.json")
         if not isinstance(submission, dict):
@@ -228,13 +288,14 @@ class Validator:
         self.validate_manifest()
         skill_names = self.validate_skills()
         self.validate_marketplace()
+        self.validate_claude_manifests()
         self.validate_evals(skill_names)
         if self.errors:
             print("Validation failed:")
             for error in self.errors:
                 print(f"- {error}")
             return 1
-        print(f"Validation passed: {len(skill_names)} skills, plugin metadata, marketplace, and eval coverage.")
+        print(f"Validation passed: {len(skill_names)} skills, Codex and Claude plugin metadata, marketplaces, and eval coverage.")
         return 0
 
 

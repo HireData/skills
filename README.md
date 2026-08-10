@@ -1,6 +1,6 @@
 # HireData Skills
 
-Open-source skills that teach AI agents how to design, create, test, and improve recruitment automations with HireData. The repository packages them as an installable OpenAI plugin while keeping the HireData MCP server implementation independent.
+Open-source skills that teach AI agents how to design, create, test, and improve recruitment automations with HireData. The skills are agent-neutral; the repository packages them as an installable plugin for both OpenAI hosts (ChatGPT, Codex) and Anthropic hosts (Claude Code, Claude Team/Enterprise plugin catalogs), while keeping the HireData MCP server implementation independent.
 
 HireData's MCP supplies live product capabilities and workspace data. These skills supply the domain judgment and repeatable workflows needed to use those capabilities well. They must not duplicate or freeze MCP schemas when the MCP can provide them.
 
@@ -17,14 +17,18 @@ These are first versions distilled from HireData's pre-MCP project prompts. Trea
 ## Repository structure
 
 ```text
-plugins/hiredata/          OpenAI plugin package and manifest
+plugins/hiredata/          Plugin package (Codex and Claude manifests)
 plugins/hiredata/skills/   Installable, self-contained skills
+.agents/plugins/           Repo marketplace for ChatGPT and Codex
+.claude-plugin/            Repo marketplace for Claude
 evals/                     Stable behavioral regression cases and rubric
 scripts/validate_repo.py   Dependency-free structural and eval validation
 CONTRIBUTING.md            Contribution and quality requirements
 TEAM_ASSIGNMENT.md         Internal kickoff assignment
 INSTALL.md                 Plugin and MCP connection instructions
 ```
+
+The two host manifests (`plugins/hiredata/.codex-plugin/plugin.json` and `plugins/hiredata/.claude-plugin/plugin.json`) describe the same plugin release; `scripts/validate_repo.py` enforces their parity.
 
 ## Principles
 
