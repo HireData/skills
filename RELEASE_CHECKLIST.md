@@ -10,13 +10,13 @@ The repository follows the current OpenAI plugin layout (a required `.codex-plug
 ## Completed in the repository
 
 - Plugin identity, semantic version, descriptions, developer, category, capabilities, starter prompts, and public policy URLs.
-- Five focused skills with self-contained references.
+- Six focused skills with self-contained references.
 - Production HireData MCP URL using remote HTTP and OAuth.
 - Repo marketplace for local development and team testing.
 - Installation instructions for the plugin and manual MCP connection.
 - Exactly five positive and three negative submission cases.
 - A larger regression suite and comparison rubric for ongoing skill changes.
-- Structural validation for all five skills.
+- Structural validation for all six skills.
 - Apache-2.0 license, repository URL, security policy, pull-request template, and automated GitHub validation.
 
 ## Required before public directory submission
