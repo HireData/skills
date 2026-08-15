@@ -1,16 +1,16 @@
-# Delivery issue or update template
+# Delivery issue/update template
 
 ## Delivered
 
-Summarize the observable change and the implementation issue or specification it satisfies.
+Summarize the observable change and the implementation issue/specification it satisfies.
 
 ## Behaviour and compatibility
 
-State what changed, what remained compatible, data effects, and known limitations.
+State what changed, what remained compatible, migrations/data effects, and known limitations.
 
 ## Verification
 
-List automated coverage, reviewed environments, customer or account verification, and relevant evidence.
+List automated coverage, reviewed environments, customer/account verification, and relevant evidence.
 
 ## Follow-ups
 
@@ -18,4 +18,4 @@ Link remaining product, UX, documentation, cleanup, or rollout work. Do not sile
 
 ## Communication
 
-State whether release notes, customer communication, documentation, or enablement are required.
+State whether release notes, customer communication, documentation, or internal enablement are required.
