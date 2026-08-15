@@ -2,7 +2,7 @@
 
 ## Summary
 
-State the reported problem or request, affected user or customer, impact, and source.
+State the reported problem/request, affected user/customer, impact, and source.
 
 ## Current behaviour
 
@@ -14,16 +14,16 @@ Describe the observable outcome the reporter expects. Do not invent the implemen
 
 ## Steps to reproduce
 
-For bugs, include the environment, account or object, exact steps, actual result, expected result, frequency, and last-known-good state when available.
+For bugs, include environment, account/object, exact steps, actual result, expected result, frequency, and last-known-good state when available.
 
 ## Evidence and links
 
-Add screenshots, recording timestamps, runs or events, affected pages, and the source conversation.
+Add screenshots, recording timestamps, runs/events, affected pages, customer request, and source conversation.
 
 ## Triage questions
 
 Collect missing facts, suspected duplicates, scope questions, and reproduction status.
 
-## Impact
+## Metadata
 
-State reach, workflow effect, workaround, and time sensitivity without assigning HireData's internal priority.
+State proposed status, priority basis, project, label, assignee, cycle, customer, and relations. Leave unsupported fields unset.
