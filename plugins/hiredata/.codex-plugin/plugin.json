@@ -1,7 +1,7 @@
 {
   "name": "hiredata",
-  "version": "0.1.0",
-  "description": "Plan and build recruitment automations using HireData skills and its official MCP server.",
+  "version": "0.2.0",
+  "description": "Plan and build recruitment automations and draft actionable HireData issue reports using HireData skills and its official MCP server.",
   "author": {
     "name": "HireData",
     "email": "support@hiredata.com",
@@ -16,7 +16,8 @@
     "automation",
     "email",
     "whatsapp",
-    "forms"
+    "forms",
+    "issue-reporting"
   ],
   "skills": "./skills/",
   "mcpServers": {
@@ -27,14 +28,15 @@
   },
   "interface": {
     "displayName": "HireData",
-    "shortDescription": "Recruitment automation skills",
-    "longDescription": "Plan high-impact recruitment automations and create triggers, forms, emails, and WhatsApp templates using HireData's live workspace context and controlled actions.",
+    "shortDescription": "Recruitment automation and issue-reporting skills",
+    "longDescription": "Plan high-impact recruitment automations, create triggers, forms, emails, and WhatsApp templates, and draft actionable HireData issue reports using live workspace context and controlled actions.",
     "developerName": "HireData",
     "category": "Business & Operations",
     "capabilities": [
       "Plan recruitment automations",
       "Create and improve templates",
-      "Use live HireData workspace context"
+      "Use live HireData workspace context",
+      "Draft actionable HireData issue reports"
     ],
     "websiteURL": "https://www.hiredata.com",
     "privacyPolicyURL": "https://www.hiredata.com/privacy-policy",
@@ -43,7 +45,8 @@
     "defaultPrompt": [
       "Find the highest-impact HireData automation opportunity in my workspace.",
       "Create a candidate availability workflow and show me a preview.",
-      "Review my templates and identify the most important gap."
+      "Review my templates and identify the most important gap.",
+      "Turn this bug report and evidence into a HireData-compatible issue draft."
     ]
   }
 }

@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Linear Issues"
+  short_description: "Draft, refine, and route HireData Linear issues"
+  default_prompt: "Use $hiredata-create-linear-issues to draft or refine this HireData Linear issue using the HireData and partner sources I can access."

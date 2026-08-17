@@ -1,6 +1,6 @@
 # HireData Skills
 
-Open-source skills that teach AI agents how to design, create, test, and improve recruitment automations with HireData. The skills are agent-neutral; the repository packages them as an installable plugin for both OpenAI hosts (ChatGPT, Codex) and Anthropic hosts (Claude Code, Claude Team/Enterprise plugin catalogs), while keeping the HireData MCP server implementation independent.
+Open-source skills that teach AI agents how to design, create, test, and improve recruitment automations and write actionable issue reports for HireData. The skills are agent-neutral; the repository packages them as an installable plugin for both OpenAI hosts (ChatGPT, Codex) and Anthropic hosts (Claude Code, Claude Team/Enterprise plugin catalogs), while keeping the HireData MCP server implementation independent.
 
 HireData's MCP supplies live product capabilities and workspace data. These skills supply the domain judgment and repeatable workflows needed to use those capabilities well. They must not duplicate or freeze MCP schemas when the MCP can provide them.
 
@@ -12,6 +12,7 @@ HireData's MCP supplies live product capabilities and workspace data. These skil
 - `hiredata-create-email-templates`: design and safely create recruitment emails.
 - `hiredata-create-whatsapp-templates`: design and safely create WhatsApp templates.
 - `hiredata-map-staffing-lifecycle`: apply staffing and ATS domain knowledge (actors, objects, stages, timing) to interpret a request before acting.
+- `hiredata-create-linear-issues`: turn evidence, requests, prototypes, and technical notes into actionable HireData issue reports.
 
 These are first versions distilled from HireData's pre-MCP project prompts. Treat them as a tested starting point, then validate consequential behavior against a non-production HireData workspace before relying on them operationally.
 
