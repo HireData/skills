@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Diagnose Automations"
+  short_description: "Find out why a HireData automation did not work"
+  default_prompt: "Use $hiredata-diagnose-automations to explain why this HireData automation did not do what I expected, and propose a safe fix."
