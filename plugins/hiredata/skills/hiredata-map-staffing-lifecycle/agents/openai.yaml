@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Map Staffing Lifecycle"
+  short_description: "Apply staffing and ATS domain knowledge before acting"
+  default_prompt: "Use $hiredata-map-staffing-lifecycle to interpret this recruitment request with correct staffing actors, objects, stage, and timing before proposing an action."
