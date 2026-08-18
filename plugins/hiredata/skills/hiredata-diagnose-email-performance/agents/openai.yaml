@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Diagnose Email Performance"
+  short_description: "Explain why a customer's open, click or delivery rates dropped"
+  default_prompt: "Use $hiredata-diagnose-email-performance to explain why this customer's email open and click rates have dropped, and help me write the reply."

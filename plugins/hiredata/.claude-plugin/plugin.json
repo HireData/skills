@@ -1,6 +1,6 @@
 {
   "name": "hiredata",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Plan and build recruitment automations and draft actionable HireData issue reports using HireData skills and its official MCP server.",
   "author": {
     "name": "HireData",

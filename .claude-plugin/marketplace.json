@@ -7,14 +7,14 @@
   },
   "metadata": {
     "description": "Recruitment automation and issue-reporting skills for HireData, backed by its official MCP server.",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "hiredata",
       "source": "./plugins/hiredata",
       "description": "Plan and build recruitment automations and draft actionable HireData issue reports using HireData skills and its official MCP server.",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "author": {
         "name": "HireData",
         "email": "support@hiredata.com",
