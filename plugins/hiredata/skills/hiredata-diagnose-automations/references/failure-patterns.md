@@ -118,6 +118,28 @@ Never let a repair introduce generated text that asserts a fact. An AI variable 
 a date, a rate, a job detail or a commitment turns a delivery defect into a candidate-facing
 false statement.
 
+## WhatsApp file-upload expectations
+
+When someone reports that a WhatsApp CV or file-upload message has no upload button, inspect the
+selected message template and linked form field before treating it as a rendering defect.
+
+WhatsApp message-template buttons cannot upload files. Linking a HireData file-upload field to a
+template does not generate a button; it associates the later conversational answer with the
+linked question. A preview without a button is therefore expected unless the template
+separately contains a provider-supported button.
+
+Keep these two supported paths distinct:
+
+- **Conversational upload:** ask the recipient to attach the file directly in WhatsApp. The copy
+  must not refer to a button below.
+- **Web-form upload:** use a standard URL button that opens a form where the upload happens. This
+  is a link to a form, not a native WhatsApp file-upload button.
+
+Also inspect the run before changing copy or templates. If a preceding message already opened a
+conversation, a following Send Survey step may stop with `open_conversation_detected`; in that
+case the survey template was not sent at all. Report the lifecycle collision separately from the
+button expectation, and do not propose adding an unsupported native upload button as the repair.
+
 ## Reporting the diagnosis
 
 State it in this order, and keep it short:
