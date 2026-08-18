@@ -79,6 +79,9 @@ Keep the order in both: what they observed, what actually happened with its evid
 
 ## Guardrails
 
+- Never state a workspace count or default, automation configuration, account-history fact, run
+  result or channel outcome unless the source returned it in the current turn. If it was not
+  queried or the surface is unreachable, call it unknown instead of filling the gap.
 - Report a zero as a zero. If a source is partial, pruned or gated, say which one and why the answer is incomplete instead of filling the gap.
 - Never infer a reason that no source returned. If the run-level message is empty and no step explains it, say the reason is not recorded and name the next place a human should look.
 - Do not treat `cancelled` as an error, `skipped` as a failure, or a single failed run as an outage.

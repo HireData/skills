@@ -24,6 +24,19 @@ When uncertain, choose the more conservative category and explain why. Category 
 
 Use variables only where recipient-specific data is necessary. Provide realistic examples when the review system requires them. Verify that every variable has a reliable source, sensible fallback, and no surrounding text that becomes misleading when the value is absent.
 
+## File uploads and buttons
+
+WhatsApp message-template buttons cannot upload files. Linking a HireData file-upload form field
+to a WhatsApp template does not generate an upload button; the link associates the later
+conversational answer with that field.
+
+- For conversational collection, ask the recipient to attach the file directly in WhatsApp. Do
+  not refer to a button that the template cannot render.
+- A standard URL button may open a web form where the recipient uploads the file. Describe and
+  test this as a link to a form, not as a native WhatsApp file-upload button.
+- When the copy refers to a button, confirm that the template preview contains an explicit,
+  provider-supported button and that its destination matches the copy.
+
 ## Test matrix
 
 - normal data;
@@ -32,6 +45,8 @@ Use variables only where recipient-specific data is necessary. Provide realistic
 - correct language and locale;
 - each quick-reply response;
 - form or URL unavailable;
+- file-upload questions use a direct attachment prompt or a tested web-form URL, not an assumed
+  upload button;
 - no response;
 - duplicate or recently sent message;
 - current category and formatting policy.
