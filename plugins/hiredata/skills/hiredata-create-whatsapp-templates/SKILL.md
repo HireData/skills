@@ -27,6 +27,12 @@ Create a concise message that is useful in context and likely to pass the curren
 
 ## Guardrails
 
+- Never claim that a template, duplicate, connection, channel capability or provider status
+  exists unless a live read returned it in the current turn. If the workspace or MCP surface is
+  unavailable, mark the fact as unverified instead of inventing a plausible result.
+- Do not cite or summarize Meta policy as current unless an authoritative source was checked in
+  the current turn. Without that check, mark category reasoning as provisional and do not invent
+  a policy link.
 - Do not classify a template as utility merely because it is manually initiated. Base the category on the content and current policy.
 - Do not disguise promotional or re-engagement content as transactional.
 - Do not imply Meta approval before approval is returned.
