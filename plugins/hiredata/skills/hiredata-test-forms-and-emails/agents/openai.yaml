@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Test Forms and Emails"
+  short_description: "QA a HireData form or email template before it goes live"
+  default_prompt: "Use $hiredata-test-forms-and-emails to audit this form or email template before I activate it, and tell me what's safe to ship."
