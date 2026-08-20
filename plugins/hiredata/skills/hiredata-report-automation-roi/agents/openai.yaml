@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Report Automation ROI"
+  short_description: "Report what live automations actually delivered"
+  default_prompt: "Use $hiredata-report-automation-roi to report what our live HireData automations have delivered, over the period they have actually been running."
