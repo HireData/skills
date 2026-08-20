@@ -130,6 +130,14 @@ Rank by expected lift, and be concrete enough to act on this week:
 1. **Put the substance in the subject line** — the actual role, place, price, whatever the
    product is. Unique per segment, unique per send. This usually fixes repetition, urgency
    phrasing and emoji in one move.
+
+   **On AI variables in subject lines.** The substance is almost always already a structured
+   field, so the strongest part of the subject needs no AI. Use an AI variable for the framing
+   *around* the fact, never for the fact. Two failure modes make this non-negotiable in a subject
+   line: an AI variable that invents a rate, a date or a job detail turns a deliverability fix
+   into a candidate-facing false statement, and one that resolves empty puts a hole in the first
+   thing the recipient sees, where there is no surrounding copy to absorb it. Deterministic
+   fields plus one AI-varied phrase per send gives the variety without the exposure.
 2. **Move substance above the boilerplate**, or cut the intro, so preview text shows the offer.
 3. **Segment by engagement** — and explain that this is not only about the segment, because the
    unengaged tail suppresses delivery for everyone else.
