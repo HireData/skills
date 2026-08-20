@@ -15,6 +15,7 @@ HireData's MCP supplies live product capabilities and workspace data. These skil
 - `hiredata-diagnose-email-performance`: explain why open, click, or delivery rates fell, and turn it into advice a customer can act on.
 - `hiredata-map-staffing-lifecycle`: apply staffing and ATS domain knowledge (actors, objects, stages, timing) to interpret a request before acting.
 - `hiredata-create-linear-issues`: turn evidence, requests, prototypes, and technical notes into actionable HireData issue reports.
+- `hiredata-report-automation-roi`: report what live automations actually delivered, over the period they have genuinely been running.
 
 The first five are distilled from HireData's pre-MCP project prompts. Treat them as a tested starting point, then validate consequential behavior against a non-production HireData workspace before relying on them operationally.
 
