@@ -1,0 +1,92 @@
+name: PR rules check
+
+# Untrusted half: runs against pull-request code with no secrets and a read-only
+# token. It produces the findings artifact that "PR rules review" turns into a
+# review on the pull request. Fork pull requests get the same treatment as
+# branch ones, which is why the reporting lives in a separate workflow.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-rules-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch the base branch
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: git fetch --no-tags origin "+refs/heads/${BASE_REF}:refs/remotes/origin/${BASE_REF}"
+
+      # Pull-request text is attacker-controlled. It only ever reaches the shell
+      # through the environment, never through string interpolation.
+      - name: Stage the pull-request metadata
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: printf '%s' "$PR_BODY" > pr-body.md
+
+      - name: Check the repository rules
+        id: gate
+        continue-on-error: true
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          python3 scripts/check_pr_rules.py \
+            --base-sha "$BASE_SHA" \
+            --head-sha "$HEAD_SHA" \
+            --pr-body-file pr-body.md \
+            --pr-number "$PR_NUMBER" \
+            --pr-title "$PR_TITLE" \
+            --pr-author "$PR_AUTHOR" \
+            --out pr-review 2>&1 | tee gate.log
+
+      - name: Upload the findings
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-rules-findings
+          path: pr-review/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Summarise
+        if: always()
+        run: |
+          {
+            echo '## Deterministic rule check'
+            echo
+            echo '```'
+            cat gate.log || echo 'the gate produced no output'
+            echo '```'
+            echo
+            echo 'The full verdict, including the judgment review, is posted on the pull request.'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fail on a rule violation
+        if: steps.gate.outcome == 'failure'
+        run: |
+          echo "::error::This pull request breaks one or more repository rules. See the pull-request comment."
+          exit 1
