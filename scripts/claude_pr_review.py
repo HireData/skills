@@ -156,8 +156,13 @@ def call_api(prompt: str, model: str, api_key: str) -> str:
                 if block.get("type") == "text"
             )
         except urllib.error.HTTPError as exc:
-            detail = exc.read().decode("utf-8", "replace")[:400]
-            last_error = f"HTTP {exc.code}: {detail}"
+            raw = exc.read().decode("utf-8", "replace")
+            # Surface the API's own message rather than dumping raw JSON into a public comment.
+            try:
+                detail = json.loads(raw).get("error", {}).get("message", "") or raw[:200]
+            except (json.JSONDecodeError, AttributeError):
+                detail = raw[:200]
+            last_error = f"HTTP {exc.code} — {detail.strip()}"
             if exc.code not in (408, 409, 429, 500, 502, 503, 504):
                 break
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
