@@ -1,0 +1,68 @@
+name: PR rules review
+
+# Trusted half: runs from the default branch after "PR rules check" completes, so
+# it can hold the write token and the Anthropic key without ever executing
+# pull-request code. It only reads the artifact the untrusted job produced, and
+# treats that artifact's contents as data.
+
+on:
+  workflow_run:
+    workflows: ["PR rules check"]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: write
+  statuses: write
+
+jobs:
+  review:
+    if: github.event.workflow_run.conclusion != 'cancelled'
+    runs-on: ubuntu-latest
+    steps:
+      # Always the default branch — never the pull request's code. The scripts
+      # below run with a write token and a secret.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download the findings
+        id: artifact
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: pr-rules-findings
+          path: pr-review
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Skip when the check job produced no findings
+        if: steps.artifact.outcome != 'success'
+        run: |
+          echo "::warning::PR rules check finished without an artifact; nothing to report."
+
+      - name: Judgment review against CONTRIBUTING.md and the rubric
+        if: steps.artifact.outcome == 'success'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_REVIEW_MODEL: ${{ vars.CLAUDE_REVIEW_MODEL }}
+        run: python3 scripts/claude_pr_review.py --context pr-review/context.json --out pr-review/ai.json
+
+      - name: Post the verdict
+        if: steps.artifact.outcome == 'success'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          # Who gets mentioned when a pull request passes every rule.
+          REVIEW_NOTIFY_HANDLE: ${{ vars.REVIEW_NOTIFY_HANDLE || 'victormundi' }}
+        run: |
+          python3 scripts/post_pr_review.py \
+            --findings pr-review/findings.json \
+            --ai pr-review/ai.json \
+            --handle "$REVIEW_NOTIFY_HANDLE"

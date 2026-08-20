@@ -47,3 +47,12 @@ Use `evals/RUBRIC.md` to score both outputs. Do not merge a change that introduc
 - A fresh-context test confirms the skill works without hidden conversation context.
 
 Run `python3 scripts/validate_repo.py` locally. GitHub Actions runs the same dependency-free gate on every pull request.
+
+## Automated review
+
+Every non-draft pull request is checked against the rules on this page, `README.md`, `RELEASE_CHECKLIST.md`, and `evals/RUBRIC.md`, and the verdict is posted as a single comment that updates in place.
+
+- `scripts/check_pr_rules.py` covers the mechanical rules: structural validation, eval coverage and evidence for each changed skill, a completed pull-request template, credential and personal-data patterns in the diff, one-level-deep `references/`, and a consistent version bump across the three manifests. Run it locally with `python3 scripts/check_pr_rules.py --base-sha $(git merge-base origin/main HEAD) --head-sha HEAD --pr-body-file body.md`.
+- `scripts/claude_pr_review.py` covers the rules that need reading comprehension: whether the change solves a real problem, carries non-obvious reusable knowledge, stays MCP-first and self-contained, and keeps confidential material out of a public repository.
+
+A broken rule produces a change request naming the rule and the fix, and fails the `PR rules` status. A clean pull request gets a comment that mentions the maintainer for review. Push a new commit to re-run the check.
