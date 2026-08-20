@@ -5,3 +5,6 @@ __pycache__/
 .env
 .env.*
 !.env.example
+
+# Local output of scripts/check_pr_rules.py
+pr-review/
