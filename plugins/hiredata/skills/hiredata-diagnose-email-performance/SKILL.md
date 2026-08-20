@@ -90,6 +90,18 @@ Content and placement are usually not competing explanations. A repetitive envel
 engagement; Gmail responds by deprioritising; the decline then looks provider-specific. Content
 is the cause and placement is the mechanism. Say so, rather than picking one.
 
+### Test 3 — a control customer, when "it's just the market" is raised
+
+Customers and colleagues will propose that inboxes got noisier and nobody reads mail any more.
+It is testable: run the same per-provider human open rate for another customer on the same
+platform over the same months. Flat or rising engagement there means the decline is
+customer-specific, not market-wide.
+
+Match the comparison to the claim. A customer sending transactional automations only rules out
+"the platform's mail is treated differently"; ruling out "bulk recruitment mail got noisier for
+everyone" needs a comparator sending bulk at similar scale. State which of the two you actually
+tested, and never present the weaker one as the stronger.
+
 Then read [references/content-and-filtering.md](references/content-and-filtering.md) and **open
 the actual template**. Behavioural metrics tell you *where* the problem is; only reading the
 email tells you *what* it is.
