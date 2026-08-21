@@ -1,6 +1,6 @@
 ---
 name: hiredata-test-forms-and-emails
-description: Audit a HireData form or email template before activation by inspecting it live via the HireData MCP, building a scenario matrix of normal, missing-or-ambiguous, and invalid inputs, and checking variables, modifiers, fallbacks, branching, required fields, recipient context, language, and spacing; returns evidence, severity, and a suggested fix per finding, marks each check as verified or needing manual verification, and never activates, publishes, sends, or mutates anything without separate explicit approval for that exact action.
+description: Use when someone is about to activate, publish, or hand over a HireData form or email template, or asks for one to be checked, reviewed, QA'd, or tested before it goes live. Audit a HireData form or email template before activation by inspecting it live via the HireData MCP, building a scenario matrix of normal, missing-or-ambiguous, and invalid inputs, and checking variables, modifiers, fallbacks, branching, required fields, recipient context, language, and spacing; returns evidence, severity, and a suggested fix per finding, marks each check as verified or needing manual verification, and never activates, publishes, sends, or mutates anything without separate explicit approval for that exact action.
 ---
 
 # Form & Email QA (HireData)
