@@ -103,14 +103,30 @@ def render_comment(blocking: list[dict], warnings: list[dict], ai: dict, handle:
         out.extend(render_finding(i, f) + "\n" for i, f in enumerate(blocking, 1))
     else:
         mention = f"@{handle} " if handle else ""
-        out.append("## ✅ Adheres to the repository rules\n")
-        out.append(
-            f"{mention}this pull request passes every automated rule check — structural validation, "
-            "eval evidence, contribution checklist, and the judgment review against `CONTRIBUTING.md` "
-            "and `evals/RUBRIC.md`. Ready for your review.\n"
-        )
+        if ai.get("status") == "ok":
+            out.append("## ✅ Adheres to the repository rules\n")
+            out.append(
+                f"{mention}this pull request passes every automated rule check — structural "
+                "validation, eval evidence, contribution checklist, and the judgment review "
+                "against `CONTRIBUTING.md` and `evals/RUBRIC.md`. Ready for your review.\n"
+            )
+        else:
+            # The judgment half did not run. Say so plainly rather than implying it passed.
+            out.append("## ⚠️ Deterministic rules pass — judgment review did not run\n")
+            out.append(
+                f"{mention}the mechanical rules pass: structural validation, eval evidence, the "
+                "contribution checklist, secret and personal-data patterns, `references/` depth, "
+                "and the version bump.\n"
+            )
+            out.append(
+                "**The judgment review did not run, so the rules that need reading comprehension "
+                "were not checked** — whether the change solves a real problem, carries non-obvious "
+                "reusable knowledge, stays MCP-first and self-contained, and keeps confidential "
+                "material out of a public repository. Review those by hand, or re-run this check "
+                "once the cause below is fixed.\n"
+            )
 
-    if ai.get("summary"):
+    if ai.get("status") == "ok" and ai.get("summary"):
         out.append(f"### Review summary\n\n{ai['summary']}\n")
 
     if warnings:
@@ -122,11 +138,11 @@ def render_comment(blocking: list[dict], warnings: list[dict], ai: dict, handle:
 
     if ai.get("status") == "skipped":
         out.append(
-            "> ⚠️ The judgment review was skipped: no `ANTHROPIC_API_KEY` secret is configured. "
-            "Only the deterministic rules ran.\n"
+            "> ⚠️ No `ANTHROPIC_API_KEY` secret is configured, so the judgment review was skipped.\n"
         )
     elif ai.get("status") == "error":
-        out.append(f"> ⚠️ The judgment review could not run: {ai.get('summary', 'unknown error')}\n")
+        # summary already reads "The judgment review could not run: ..." — do not prefix it again.
+        out.append(f"> ⚠️ {ai.get('summary') or 'The judgment review could not run.'}\n")
 
     out.append(
         f"<sub>Checked `{head_sha[:7]}` against `CONTRIBUTING.md`, `README.md`, "
