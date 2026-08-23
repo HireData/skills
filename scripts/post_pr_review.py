@@ -241,12 +241,23 @@ def main() -> int:
         f"{os.environ.get('GITHUB_SERVER_URL', 'https://github.com')}/{repo}/actions/runs/"
         f"{os.environ.get('GITHUB_RUN_ID', '')}"
     )
-    description = (
-        f"{len(blocking)} rule violation{'' if len(blocking) == 1 else 's'}"
-        if blocking else "Adheres to the repository rules"
-    )
+    if blocking:
+        state = "failure"
+        description = (
+            f"{len(blocking)} rule violation{'' if len(blocking) == 1 else 's'}"
+        )
+    elif ai.get("status") != "ok":
+        # Half the rules were never evaluated. A green status here would read as
+        # "adheres to the repository rules", which is exactly what was not established.
+        state = "failure"
+        reason = "no ANTHROPIC_API_KEY" if ai.get("status") == "skipped" else "API error"
+        description = f"Judgment review did not run ({reason}) — see the comment"
+    else:
+        state = "success"
+        description = "Adheres to the repository rules"
+
     request("POST", f"/repos/{repo}/statuses/{head_sha}", token, {
-        "state": "failure" if blocking else "success",
+        "state": state,
         "context": STATUS_CONTEXT,
         "description": description[:140],
         "target_url": run_url,
