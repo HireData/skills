@@ -134,7 +134,6 @@ def call_api(prompt: str, model: str, api_key: str) -> str:
     payload = json.dumps({
         "model": model,
         "max_tokens": 4096,
-        "temperature": 0,
         "system": SYSTEM,
         "messages": [{"role": "user", "content": prompt}],
     }).encode("utf-8")
