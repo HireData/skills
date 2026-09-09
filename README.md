@@ -11,7 +11,6 @@ HireData's MCP supplies live product capabilities and workspace data. These skil
 - `hiredata-create-forms`: design and safely create recruitment forms.
 - `hiredata-create-email-templates`: design and safely create recruitment emails.
 - `hiredata-create-whatsapp-templates`: design and safely create WhatsApp templates.
-- `hiredata-final-check-templates`: audit the exact saved email or WhatsApp revision before launch and give a go/no-go verdict.
 - `hiredata-diagnose-automations`: explain why a workflow did not do what was expected, then propose a safe repair.
 - `hiredata-diagnose-email-performance`: explain why open, click, or delivery rates fell, and turn it into advice a customer can act on.
 - `hiredata-map-staffing-lifecycle`: apply staffing and ATS domain knowledge (actors, objects, stages, timing) to interpret a request before acting.

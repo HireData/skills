@@ -1,4 +1,0 @@
-interface:
-  display_name: "HireData Final Check Templates"
-  short_description: "Audit template readiness before launch"
-  default_prompt: "Use $hiredata-final-check-templates to audit this saved HireData email or WhatsApp template and give a defensible go/no-go verdict."
