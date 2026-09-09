@@ -1,6 +1,6 @@
 {
   "name": "hiredata",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Plan and build recruitment automations and draft actionable HireData issue reports using HireData skills and its official MCP server.",
   "author": {
     "name": "HireData",
@@ -29,12 +29,13 @@
   "interface": {
     "displayName": "HireData",
     "shortDescription": "Recruitment automation and issue-reporting skills",
-    "longDescription": "Plan high-impact recruitment automations, create triggers, forms, emails, and WhatsApp templates, and draft actionable HireData issue reports using live workspace context and controlled actions.",
+    "longDescription": "Plan high-impact recruitment automations, create triggers, forms, emails, and WhatsApp templates, audit template launch readiness, and draft actionable HireData issue reports using live workspace context and controlled actions.",
     "developerName": "HireData",
     "category": "Business & Operations",
     "capabilities": [
       "Plan recruitment automations",
       "Create and improve templates",
+      "Audit template launch readiness",
       "Use live HireData workspace context",
       "Draft actionable HireData issue reports"
     ],
