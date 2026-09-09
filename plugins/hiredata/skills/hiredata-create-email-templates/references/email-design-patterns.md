@@ -48,7 +48,7 @@ Examples of bounded uses include summarizing supplied vacancy text for a candida
 
 ## Brand, forms, and actions
 
-Read available brands and the saved template's selected brand through the MCP. Confirm any connected form or URL is the intended asset and that the button label describes its real destination. Do not infer a form from a similarly named resource or promise an action the destination cannot perform.
+Confirm the active workspace before interpreting a brand error. Read available brands and the saved template's selected brand through the MCP. Confirm any connected form or URL is the intended asset and that the button label describes its real destination. Do not infer a form from a similarly named resource or promise an action the destination cannot perform.
 
 Keep one primary action. If no action is required, do not add a decorative button. If a linked form or URL is unavailable, change the preview or mark the email incomplete rather than leaving instructions such as "click below" without a working destination.
 
@@ -69,6 +69,7 @@ Treat the builder as an authoring view, not proof of delivery output. Re-read th
 Check for:
 
 - unresolved or silently empty variables;
+- visible typos, broken words, or inconsistent factual details;
 - fallback grammar and punctuation;
 - duplicated greeting, signature, or spacing from the brand scaffold;
 - collapsed line breaks, excessive gaps, or broken alignment;
@@ -76,7 +77,7 @@ Check for:
 - correct rendering of emoji, currency signs, accents, smart punctuation, and other special characters, with no mojibake;
 - long names and URLs disrupting the mobile reading flow;
 - CTA labels that no longer match their destination, and repeated CTAs that accidentally reuse the wrong URL;
-- working HTTPS destinations for every CTA plus appropriate `mailto:` and `tel:` protocols, the current privacy URL, and the expected unsubscribe link;
+- working HTTPS destinations for every CTA—not merely syntactically valid links—including their final destination when redirects can be checked, plus appropriate `mailto:` and `tel:` protocols, the current privacy URL, and the expected unsubscribe link;
 - language content or links leaking from another locale.
 
 Structural validation and a compiled browser preview do not prove Gmail or Outlook inbox rendering. If compiled output cannot be inspected with the available MCP operations, say so explicitly and do not present builder appearance as verified rendering. State which actual inbox clients were or were not tested.

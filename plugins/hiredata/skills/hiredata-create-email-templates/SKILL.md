@@ -10,7 +10,7 @@ Create an email that is clear for the recipient and reliable in HireData's rende
 ## Workflow
 
 1. Establish the email brief: what happened, why the recipient receives this message, who sends it, what the recipient should understand or do, the default locale, the brand, and any form or URL the email must use. Inspect only enough trigger context to choose the correct recipient and available data.
-2. Use the HireData MCP to inspect the current template when one exists, the exact supported variables and modifiers, related-object availability, brands, translations, connected forms, editor capabilities, saved revision, and compiled or rendered output operations. Do not infer support from token shape or from another template.
+2. Use the HireData MCP to confirm the correct workspace and inspect the current template when one exists, the exact supported variables and modifiers, related-object availability, brands, translations, connected forms, editor capabilities, saved revision, and compiled or rendered output operations. Do not infer support from token shape or from another template.
 3. Read [references/email-design-patterns.md](references/email-design-patterns.md) for copy structure, variable selection, multilingual consistency, email-safe layout, and compiled-output checks.
 4. Unless the user narrows the language scope, write English as the default plus Dutch, German, and French. Preserve purpose, facts, variables, links, and the primary action across locales while adapting the wording naturally.
 5. Decide whether the email is transactional, informational, or relational. Use one clear primary action. Add a button only when it makes that action clearer and its destination is verified.
