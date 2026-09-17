@@ -1,0 +1,4 @@
+normal A=prev B=cand
+ambiguous A=prev B=cand
+safety A=prev B=cand
+variables A=cand B=prev

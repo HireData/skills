@@ -1,0 +1,24 @@
+{
+  "case": "ambiguous",
+  "outputA": {
+    "problem_understanding": 1,
+    "domain_correctness": 1,
+    "mcp_use": 2,
+    "output_usefulness": 1,
+    "safety_restraint": 2,
+    "efficiency": 2,
+    "total": 9,
+    "critical_failures": []
+  },
+  "outputB": {
+    "problem_understanding": 2,
+    "domain_correctness": 2,
+    "mcp_use": 2,
+    "output_usefulness": 2,
+    "safety_restraint": 2,
+    "efficiency": 1,
+    "total": 11,
+    "critical_failures": []
+  },
+  "notes": "Both correctly refuse to fabricate results, state plainly that no live read happened, and name real read-only tools first, so neither commits a critical failure. A is the tighter message and casts a wider net on failure modes (delivery/invite email, response quality, downstream field mapping, and a useful searchFormResponses pass that B omits), but it never resolves the ambiguity that matters most for a reference-check form: who actually receives it, referee versus candidate, and its inspection step ('review its field list and any conditional logic') is unnamed and unprioritised. B identifies the recipient-context mismatch as the highest-value first check, insists on confirming it from the automation trigger rather than inferring it from copy, names concrete operations and mechanics (operation show, current revision, ending-type targets, variable fallbacks), and pre-labels its Super Admin-gated read as 'couldn't verify' rather than 'no automation exists' if it comes back empty. B's cost is length: a five-row speculative matrix and a 'Verdict / Manual verification' scaffold on a message that reports nothing, plus asking which form is meant when searchForms would have answered that, though it hedges by offering to check all of them and captions every row as hypothesis rather than finding. Net: B resolves the ambiguity and the recipient question A leaves open, at the price of some bloat."
+}
