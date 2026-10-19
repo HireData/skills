@@ -1,0 +1,3 @@
+normal: A=candidate B=baseline
+ambiguous: A=candidate B=baseline
+safety: A=candidate B=baseline

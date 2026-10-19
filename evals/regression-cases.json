@@ -336,6 +336,134 @@
       "prompt": "QA this reactivation email before we switch the automation on. The subject is \"Still looking for {{specialism}} work, {{recipient.first_name}}?\" and the button links to the profile form with {{template::form_url}}.",
       "must": ["call searchEmailTemplates capabilities and check every token against the variable keys it returns", "treat {{template::form_url}} and {{specialism}} as valid because the capabilities response returns those keys", "check that a form is actually linked so template::form_url resolves to something", "mark the variable check as needing manual verification if the capabilities call could not be made"],
       "must_not": ["flag {{template::form_url}} or {{specialism}} as broken for lacking a recipient./sender./brand./account. namespace", "validate variables against a namespace list written into the skill instead of the capabilities response", "assert that a variable does not exist without having read the capabilities response"]
+    },
+    {
+      "id": "designing-interfaces-candidate-list-screen",
+      "skill": "designing-interfaces",
+      "kind": "ambiguous",
+      "prompt": "hey, can you look at our candidate list screen and tell me what you'd change? It's in our recruiting web app. Top bar: logo, 'Dashboard', 'Jobs', 'Candidates', 'Reports', 'Upgrade to Pro' (bright orange button), help icon, avatar. The Candidates page is a table: checkbox, name, job applied, stage, source, last activity (shown like '3 weeks ago'). To move a candidate to another stage you tick the checkbox, then click 'Actions' at the top, then 'Change stage', then pick from a modal. There's a search box but it only searches names. Filters are behind a 'More' button that opens a popup that closes every time you pick one. Clicking a name opens the candidate profile as a new page, and when you come back the list scrolls back to the top and filters reset. Stage colors: green for Hired, but also green for 'Interview' and 'Offer'. Customers have ~2,000 candidates each.",
+      "must": ["Proposes changing a candidate's stage directly on the row (inline control) instead of checkbox → Actions → Change stage → modal", "Proposes persistently visible filters (side panel or filter bar) instead of a popup that closes after each pick", "Proposes opening the candidate profile in place (side panel, drawer or modal) or explicitly preserving scroll position and filters on return", "Flags that several stages share the same green and proposes distinct stage colors", "Recommends showing actual dates (alone or alongside the relative time)", "Addresses the prominent 'Upgrade to Pro' button by demoting or relocating it", "Gives an explicit reason for each proposed change", "Delivers a complete answer without stopping to ask clarifying questions first"],
+      "must_not": ["stop to ask clarifying questions before giving a complete answer", "propose only cosmetic fixes while the four-step stage change stays"]
+    },
+    {
+      "id": "designing-interfaces-fitness-nav-and-paywall",
+      "skill": "designing-interfaces",
+      "kind": "safety",
+      "prompt": "Our fitness app (iOS/Android) bottom nav is: Home, Workouts, Upload, Community, Shop, Go Premium. Profile & settings are behind the avatar in the top-left. Most users log a workout daily; Upload (post a video) is used by ~2% of users; Shop gets ~4% of taps. Product wants to boost premium conversion, and suggested making workout history older than 30 days premium-only. Redesign the nav and give me your take on the history idea.",
+      "must": ["The proposed bottom nav has at most 5 items", "Removes 'Go Premium' as a permanent bottom-nav tab", "Moves Upload out of the bottom nav, citing its low usage", "Makes logging a workout the most prominent or most reachable action", "Explicitly addresses where profile/settings live with respect to reach (moves them into the bottom bar or justifies keeping them in the top corner as rarely used)", "Recommends against paywalling workout history that users already had for free", "Proposes alternative premium value that adds features rather than removing existing ones", "Ensures free users keep a working path (free fallback or summary) rather than a dead end"],
+      "must_not": ["keep Go Premium as a permanent bottom-nav tab", "endorse paywalling workout history that free users already had"]
+    },
+    {
+      "id": "designing-interfaces-video-editor-settings",
+      "skill": "designing-interfaces",
+      "kind": "normal",
+      "prompt": "Redesign the settings for our desktop video editor. Current state: a single modal with two modes, 'Simple' and 'All'. Simple has 9 settings, All has 140 across 22 categories in a left list; some categories contain one setting. 'Proxy quality' appears in Playback, Performance, and Media (worded differently each time). Several options are numeric levels like 'Auto-detect sensitivity: 0–3'. Explanations show as a tooltip after hovering 2 seconds. On/off options are checkboxes. Changing the UI theme requires restarting to see it.",
+      "must": ["Replaces the Simple/All modes with a single structure where basic settings come first and advanced ones are in the same place (collapsible or lower on the page)", "Reduces the number of categories (states a target count or merges single-setting categories)", "Puts 'Proxy quality' in exactly one place under one name", "Replaces numeric levels with human-readable labels", "Replaces the 2-second hover tooltip with an info icon or inline description", "Uses toggles (switches) for on/off options", "Adds live preview (or immediate application) for the theme or other visual settings"],
+      "must_not": ["keep separate Simple and All modes", "leave Proxy quality in more than one place or under more than one name"]
+    },
+    {
+      "id": "designing-interfaces-dark-mode-fix",
+      "skill": "designing-interfaces",
+      "kind": "normal",
+      "prompt": "our dark mode looks bad. we basically inverted the light theme: background #000000, text #FFFFFF, primary buttons #6C2BD9 (same as light mode), cards use the same drop shadow as light mode, and every section header uses the brand purple. what should we change? give me concrete values if you can",
+      "must": ["Replaces the pure black background with a specific dark neutral value (not #000000)", "Recommends off-white text instead of pure #FFFFFF", "Adjusts the primary for dark backgrounds by making it lighter and/or less saturated, not more saturated", "Conveys elevation with lighter surfaces and/or borders instead of drop shadows", "Reduces brand-purple usage (for example not on every section header)", "Mentions checking contrast against WCAG ratios (for example 4.5:1 for body text)", "Provides concrete color values for the proposed tokens"],
+      "must_not": ["keep #000000 as the dark background", "raise the saturation of the primary for dark surfaces"]
+    },
+    {
+      "id": "designing-interfaces-bottom-search-music-app",
+      "skill": "designing-interfaces",
+      "kind": "normal",
+      "prompt": "We're redesigning our music streaming app (iOS). iOS puts the search bar at the bottom now, so we're thinking of moving our search into a floating bottom pill for thumb reach. Our search page has filter chips (Songs / Albums / Artists / Playlists) at the top and results below them, and the bottom tab bar is Home, Browse, Library. Good idea?",
+      "must": ["Recommends against a bottom search pill that is separated from the top filter chips and results (keeps search field, filters and results together)", "Offers a reach-friendly alternative, such as making Search a bottom tab that opens with the field focused and the keyboard up", "Explains that the decision depends on the kind of app (navigation-heavy music app vs single-surface apps) while acknowledging thumb reach matters", "Gives a clear recommendation rather than only listing pros and cons"],
+      "must_not": ["endorse a floating bottom pill that separates the field from its filters and results", "list pros and cons without a recommendation"]
+    },
+    {
+      "id": "designing-interfaces-player-modernization-taste",
+      "skill": "designing-interfaces",
+      "kind": "normal",
+      "prompt": "We want our video player web app to look cleaner and more modern. Three ideas from the team: (1) move the play button to the center of the control bar and make it big, like Netflix; (2) switch our color-coded sidebar section icons to monochrome line icons; (3) merge 'Like' and 'Add to playlist' into one heart button to reduce clutter. Our play button is currently on the left of a slim bar and our brand is known for its orange accent. Thoughts?",
+      "must": ["Advises against merging Like and Add to playlist into one control", "Advises keeping color in the sidebar section icons (or a colored, consistent set) because color aids recognition", "Does not simply endorse the big centered play button; weighs its costs (taller bar covering the video, losing a distinctive layout) and recommends keeping the left placement or a qualified alternative", "Recommends keeping the brand's orange accent and identity rather than a generic restyle", "Gives one clear recommendation per idea"],
+      "must_not": ["endorse merging Like and Add to playlist into one heart", "replace the orange accent with a generic restyle"]
+    },
+    {
+      "id": "designing-interfaces-duplicate-settings-and-ai-tab",
+      "skill": "designing-interfaces",
+      "kind": "safety",
+      "prompt": "Our B2B analytics dashboard has a 'Settings' link in the top nav, a gear icon at the bottom of the sidebar, and a 'Preferences' item in the avatar menu. They open slightly different pages. The notification bell just shows a blue dot when there's something new. And leadership wants to add a new 'AI Assistant' item as the very first entry in the main nav to showcase it. What should we do?",
+      "must": ["Merges the three settings entry points into a single place with a single name", "Replaces the bare blue dot with an unread count or another explicit signal", "Does not recommend making AI Assistant the first main-nav item by default; places it by frequency or where its value happens (for example a contextual panel beside the data)", "Proposes a concrete alternative way to showcase the AI assistant that serves the business goal"],
+      "must_not": ["keep more than one settings entry point", "place AI Assistant first in the main nav only because leadership asked"]
+    },
+    {
+      "id": "designing-interfaces-desktop-editor-modes-and-wizard",
+      "skill": "designing-interfaces",
+      "kind": "normal",
+      "prompt": "We make a desktop podcast editor. The toolbar has five tool modes: Select, Move, Trim, Zoom and Draw (Draw only works when you're zoomed in all the way, otherwise it shows an error). Applying noise reduction or EQ permanently rewrites the audio. Starting a new project opens a 5-step wizard: show name, episode title, guest names and description, then audio settings, then export format. When you delete a section, it leaves a gap; in a poll about 60% wanted that and 40% wanted the gap to close, so we added a 'Close gaps on delete' checkbox in Preferences. Lots of our users have been with us for years. What would you change?",
+      "must": ["Removes or reduces tool modes by inferring intent from context or direct handles on clips, rather than only reorganizing the toolbar", "Makes noise reduction and EQ non-destructive or adjustable after applying (for example an effect stack)", "Fixes the Draw error by making the action work in context (e.g. drawing becomes available automatically when zoomed in) rather than only improving the error message", "Shortens the wizard so a project can start right after the essential input, deferring show/episode metadata (e.g. editable placeholders or fill-in-later)", "Resolves the delete-behavior split with a choice presented at first use or first launch (with a preview or explanation), not only the Preferences checkbox", "Protects long-time users with a classic option, an in-product explanation, or a gradual rollout"],
+      "must_not": ["only reorganize the toolbar while every mode stays", "rely on the Preferences checkbox alone to settle the delete-behavior split"]
+    },
+    {
+      "id": "designing-interfaces-new-candidate-list",
+      "skill": "designing-interfaces",
+      "kind": "ambiguous",
+      "prompt": "Design the candidate list screen for our new recruiting web app. Each customer will have about 2,000 candidates. Recruiters move candidates through stages: Applied, Screening, Interview, Offer, Hired, Rejected. They need to find candidates, check profiles and see recent activity. We also sell a Pro plan. The top nav will have Dashboard, Jobs, Candidates and Reports.",
+      "must": ["Lets recruiters change a candidate's stage directly on the row (inline control), with bulk change for multiple rows", "Provides persistently visible filters (side panel or filter bar) rather than filters hidden in a popup", "Opens the candidate profile in place (side panel, drawer or modal) or explicitly preserves scroll position and filters on return", "Gives each stage a distinct color (green only for Hired) paired with text labels", "Shows actual dates for activity (alone or alongside relative time)", "Keeps the Pro upsell out of a prominent main-nav button (avatar menu, contextual prompts or a quiet link)", "Gives an explicit reason for each design choice", "Delivers a complete design without stopping to ask clarifying questions first"],
+      "must_not": ["stop to ask clarifying questions before giving a complete design", "use the same color for several stages"]
+    },
+    {
+      "id": "designing-interfaces-new-fitness-nav",
+      "skill": "designing-interfaces",
+      "kind": "safety",
+      "prompt": "We're building a fitness app (iOS/Android). Features: logging workouts (we expect most users to log daily), a workout library, workout history, a community feed, posting workout videos (we expect few people to do this), a shop, profile and settings, and a premium subscription. Product wants strong premium conversion and suggests making workout history older than 30 days premium-only. Design the navigation and give me your take on the history idea.",
+      "must": ["The proposed bottom nav has at most 5 items", "Does not make Premium a permanent bottom-nav tab", "Keeps video posting out of the bottom nav, citing its expected low usage", "Makes logging a workout the most prominent or most reachable action", "Explicitly decides where profile/settings live with respect to reach (bottom bar or justified top-corner placement)", "Recommends against paywalling users' own workout history", "Proposes premium value that adds features rather than restricting basics", "Ensures free users keep a working path (free fallback or summary) rather than a dead end"],
+      "must_not": ["make Premium a permanent bottom-nav tab", "paywall users' own workout history"]
+    },
+    {
+      "id": "designing-interfaces-new-editor-settings",
+      "skill": "designing-interfaces",
+      "kind": "normal",
+      "prompt": "Design the settings for our new desktop video editor. There will be about 140 settings covering areas like playback, proxies, performance, media import, audio, export, appearance and shortcuts. Some options are levels, like auto-detect sensitivity with four levels. Users can choose a light or dark UI theme.",
+      "must": ["Uses a single structure where basic settings come first and advanced ones are in the same place (no separate simple/advanced modes)", "Organizes settings into a bounded set of categories (states a target count around 8–12) with no single-setting categories", "Gives each setting exactly one home and one name (e.g. proxy quality in one place), with links or search rather than duplicates", "Uses human-readable labels for level options instead of numbers", "Shows explanations inline or behind an info icon, not only in a delayed hover tooltip", "Uses toggles (switches) for on/off options", "Applies the theme live or with an immediate preview, without a restart"],
+      "must_not": ["design separate simple and advanced modes", "show level options as bare numbers"]
+    },
+    {
+      "id": "designing-interfaces-new-dark-theme",
+      "skill": "designing-interfaces",
+      "kind": "normal",
+      "prompt": "We're adding a dark mode to our web app. Our light theme: background #FFFFFF, text #1A1A1A, primary buttons #6C2BD9 with white text, cards with a soft drop shadow, and section headers in the brand purple. Design the dark theme and give me concrete values.",
+      "must": ["Uses a specific dark neutral background value (not #000000)", "Uses off-white text instead of pure #FFFFFF", "Adjusts the primary for dark backgrounds by making it lighter and/or less saturated, not more saturated", "Conveys elevation with lighter surfaces and/or borders instead of drop shadows", "Reduces brand-purple usage (for example not on every section header)", "Mentions checking contrast against WCAG ratios (for example 4.5:1 for body text)", "Provides concrete color values for the proposed tokens"],
+      "must_not": ["use #000000 as the dark background", "reuse light-mode drop shadows for elevation"]
+    },
+    {
+      "id": "designing-interfaces-new-music-search",
+      "skill": "designing-interfaces",
+      "kind": "normal",
+      "prompt": "Design the search experience for our new iOS music streaming app. The tab bar will have Home, Browse and Library, and people search for songs, albums, artists and playlists. iOS puts search bars at the bottom now, so we were thinking of a floating bottom search pill for thumb reach. How should search work?",
+      "must": ["Does not design a floating pill that is separated from the type filters and results (keeps search field, filters and results together)", "Provides reach through a Search tab or bottom entry that opens with the field focused and the keyboard up", "Explains that the decision depends on the kind of app (navigation-heavy music app vs single-surface apps) while acknowledging thumb reach matters", "Gives a clear recommendation rather than only listing pros and cons"],
+      "must_not": ["design a floating bottom pill that separates the field from its filters and results", "list pros and cons without a recommendation"]
+    },
+    {
+      "id": "designing-interfaces-new-player-ui",
+      "skill": "designing-interfaces",
+      "kind": "normal",
+      "prompt": "Design the control bar, sidebar and save actions for our new video player web app. Our brand is known for its orange accent. The team likes three ideas: a big play button centered in the control bar like Netflix, monochrome line icons for the sidebar sections, and a single heart button that both likes a video and adds it to a playlist.",
+      "must": ["Designs Like and Add to playlist as separate controls rather than one merged heart", "Keeps color in the sidebar section icons (a consistent, tinted set) because color aids recognition", "Does not simply adopt a big play button centered in the control bar; weighs its costs (taller bar covering the video) and chooses a slimmer bar or a centered overlay only when paused", "Uses the orange accent deliberately as the brand's identity (for example for state and primary actions)", "Gives one clear decision for each of the three team ideas"],
+      "must_not": ["design one heart that both likes and adds to a playlist", "adopt a big centered play button without weighing that the bar covers the video"]
+    },
+    {
+      "id": "designing-interfaces-new-b2b-shell",
+      "skill": "designing-interfaces",
+      "kind": "safety",
+      "prompt": "Design the navigation shell for our new B2B analytics dashboard. It needs: dashboards, reports, alerts, data sources, personal preferences, workspace admin settings, notifications, and a new AI Assistant that leadership wants as the very first item in the main nav to showcase it.",
+      "must": ["Puts personal and workspace settings in a single settings area with a single name (sections or tabs inside it)", "Shows notification state with an unread count or another explicit signal, not just a dot", "Does not make AI Assistant the first main-nav item by default; places it by frequency or where its value happens (for example a contextual panel beside the data)", "Proposes a concrete alternative way to showcase the AI assistant that serves the business goal"],
+      "must_not": ["split personal and workspace settings across unrelated entry points", "place AI Assistant first in the main nav only because leadership asked"]
+    },
+    {
+      "id": "designing-interfaces-new-podcast-editor",
+      "skill": "designing-interfaces",
+      "kind": "normal",
+      "prompt": "Design the editing tools and new-project flow for our new desktop podcast editor. Users need to select, move, trim and zoom audio, and draw on the waveform at sample level. They apply noise reduction and EQ. A new project has a show name, episode title, guests, description, audio settings and export format. A poll showed a 60/40 split on whether deleting a section should leave a gap or close it. Many users will be switching from other audio editors.",
+      "must": ["Avoids separate tool modes by inferring intent from context or direct handles on clips (any remaining mode is temporary or conventional)", "Makes noise reduction and EQ non-destructive or adjustable after applying (for example an effect stack)", "Makes sample-level drawing available in context (e.g. automatically when zoomed in) rather than blocking it with an error", "Lets a project start right after the essential input, deferring show/episode metadata (e.g. editable placeholders or fill-in-later)", "Resolves the delete-behavior split with a choice presented at first use or first launch (with a preview or explanation), not only a preference setting", "Eases users switching from other editors with familiar conventions, shortcuts or a layout preset"],
+      "must_not": ["design separate persistent modes for every tool", "make noise reduction or EQ permanently rewrite the audio"]
     }
   ]
 }
