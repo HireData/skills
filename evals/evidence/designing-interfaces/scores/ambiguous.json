@@ -1,0 +1,30 @@
+{
+  "case": "ambiguous",
+  "A": {
+    "dimensions": {
+      "problem_understanding": 2,
+      "ui_ux_design_correctness": 2,
+      "assumptions_and_no_invented_facts": 2,
+      "output_usefulness": 2,
+      "safety_and_restraint": 2,
+      "efficiency": 1
+    },
+    "total": 11,
+    "must_met": [true, true, true, true, true, true, true, true],
+    "critical_failures": []
+  },
+  "B": {
+    "dimensions": {
+      "problem_understanding": 2,
+      "ui_ux_design_correctness": 2,
+      "assumptions_and_no_invented_facts": 1,
+      "output_usefulness": 2,
+      "safety_and_restraint": 2,
+      "efficiency": 1
+    },
+    "total": 10,
+    "must_met": [true, true, true, true, false, true, false, true],
+    "critical_failures": []
+  },
+  "notes": "Both outputs fix the four-step stage change, the filter popup, the lost place and the shared green, and neither asks questions before answering, so neither has a critical failure. A states its assumptions up front, shows the actual date in the cell with the relative time in a tooltip, gives a reason for every change, and adds a wireframe and a rollout order. Its unexplained P-codes add noise for the reader. B keeps the relative time and puts the exact date only in a tooltip, its section 8 table basics mostly lack reasons, and it ends with clarifying questions instead of stating its assumptions; its stale-candidate flag is a good extra idea."
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Designing Interfaces"
+  short_description: "Design or redesign simple, user-friendly interfaces"
+  default_prompt: "Use $designing-interfaces to design or redesign this interface and explain each change."
