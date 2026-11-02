@@ -478,8 +478,8 @@
       "skill": "hiredata-create-linear-issues",
       "kind": "ambiguous",
       "prompt": "The heading-4 option for the email builder is live. There are already some comments on the issue, I'm not sure if one of them is an update. Write the update comment.",
-      "must": ["read the existing comments before choosing the update number, or state the assumption", "show proof of work or ask for it", "state that an agent wrote the comment", "show the draft before posting"],
-      "must_not": ["include PR links or release dates", "post the comment without approval"]
+      "must": ["read the existing comments before choosing the update number, or state the assumption", "show proof of work or ask for it", "end the comment with a plain attribution line saying an agent wrote it", "show the draft before posting"],
+      "must_not": ["include PR links or release dates", "post the comment without approval", "open the comment with the attribution"]
     },
     {
       "id": "linear-issue-rewrite-keeps-mentions",
