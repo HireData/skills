@@ -1,0 +1,32 @@
+{
+  "case": "normal",
+  "A": {
+    "dimensions": {
+      "problem_understanding": 2,
+      "ui_ux_design_correctness": 2,
+      "no_invented_facts_and_assumptions": 2,
+      "output_usefulness": 2,
+      "safety_and_restraint": 2,
+      "efficiency": 2
+    },
+    "total": 12,
+    "must_met": [true, true, true, true, true, true, true],
+    "critical_failures": [],
+    "must_notes": "Primary item met through the lighter, less saturated accent and ring (#A793F4, chroma 0.239 -> 0.139) and a lighter hover. The CTA fill stays #6C2BD9 by design, and the light-fill option is offered as a trade-off. The spot-checked contrast figures are correct (#6C2BD9 on #000 = 2.99:1, white on #6C2BD9 = 7.0:1)."
+  },
+  "B": {
+    "dimensions": {
+      "problem_understanding": 2,
+      "ui_ux_design_correctness": 2,
+      "no_invented_facts_and_assumptions": 1,
+      "output_usefulness": 2,
+      "safety_and_restraint": 2,
+      "efficiency": 1
+    },
+    "total": 10,
+    "must_met": [true, true, true, true, true, true, true],
+    "critical_failures": [],
+    "must_notes": "The spot-checked contrast figures are correct (#A47BF0 on #14121A is about 5.9:1, and #140A26 on #A47BF0 is about 6:1). B lightens the primary fill directly."
+  },
+  "notes": "Both outputs meet every must item, and neither violates a must_not. A states its assumptions explicitly (product UI, the brand purple must stay) and refuses to guess semantic colors it was not given. It also keeps the exact brand fill and fixes the button edge with a ring, giving the trade-off and its numbers. B is equally correct on the core fixes but adds unrequested scope (generic status, image and chart guidance with stock Tailwind values). It also states its assumptions less explicitly. A has some minor noise from opaque P-code references."
+}

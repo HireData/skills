@@ -17,6 +17,7 @@ HireData's MCP supplies live product capabilities and workspace data. These skil
 - `hiredata-create-linear-issues`: turn evidence, requests, prototypes, and technical notes into actionable HireData issue reports.
 - `hiredata-report-automation-roi`: report what live automations actually delivered, over the period they have genuinely been running.
 - `hiredata-test-forms-and-emails`: audit a form or email template against normal, missing, and invalid inputs before activation.
+- `designing-interfaces`: design new interfaces or redesign existing ones toward simple, user-friendly results, with the reasoning behind each change.
 
 The first five are distilled from HireData's pre-MCP project prompts. Treat them as a tested starting point, then validate consequential behavior against a non-production HireData workspace before relying on them operationally.
 
