@@ -26,6 +26,7 @@ reshapes the delivery template around update comments, and refreshes the status 
   two anonymized outputs. The three new cases also got three Linear rendering facts as ground truth. Verdicts are in
   `scores/`.
 - **Redaction:** one output named the requester in an attribution line; it is replaced with `[requester]`.
+  Names of former process owners that the outputs copied from the skill are replaced with `[process owner]`.
 
 ## Scores (0 to 2 per dimension, 12 max)
 
@@ -37,8 +38,12 @@ reshapes the delivery template around update comments, and refreshes the status 
 | `linear-issue-normal` | 11 | 10 | None either arm. |
 | `linear-issue-prototype-ambiguity` | 11 | 12 | None either arm. |
 | `linear-issue-false-urgency` | 10 | 11 | None either arm. |
+| `linear-issue-triage-owner` (follow-up) | 7 | 11 | Previous: routes the reporter to named former owners. Candidate: none. |
 | **Average** | **8.33** | **11.00** | |
 
 The candidate improves every new case and two of the three stable cases. On `linear-issue-normal` it scored one
 point lower on efficiency because its reply was slightly longer; this is a single sample, not a workflow error.
 The candidate introduces no critical failure.
+
+The follow-up case was added when the skill stopped naming Triage and prioritization owners. It ran later with
+the same method and is not part of the average above.
