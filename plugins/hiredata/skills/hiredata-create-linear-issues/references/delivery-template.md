@@ -1,21 +1,43 @@
 # Delivery issue/update template
 
-## Delivered
+Record delivered work in an update comment on the issue. Keep the issue body as it read before the work started,
+and tick the to-dos and acceptance criteria that were verified.
 
-Summarize the observable change and the implementation issue/specification it satisfies.
+## Update comment
 
-## Behaviour and compatibility
+A suggested shape, adapted to what the update needs:
 
-State what changed, what remained compatible, migrations/data effects, and known limitations.
+```markdown
+### Update 2
 
-## Verification
+One or two sentences on what this update covers.
 
-List automated coverage, reviewed environments, customer/account verification, and relevant evidence.
+**Findings**
+* What turned out different from the issue, in plain words.
 
-## Follow-ups
+**Added**
+* One sentence per change.
 
-Link remaining product, UX, documentation, cleanup, or rollout work. Do not silently absorb it into the delivered scope.
+**Fixed**
+* One sentence per fix.
+```
 
-## Communication
+- **Numbering:** start with `### Update`, then `### Update 2` and onward. Read the existing comments for the number.
+- **Categories:** pick from Findings, Added, Changed, Fixed, Removed, Known limitations, and Next steps. Use only the
+  ones that hold something. Put Findings first when the result differs from the issue.
+- **Proof of work:** show the result in the format that communicates best: screenshots, a short video, numbers, or a
+  run that shows the change. When the material is dense, attach a Linear document and link it.
+- **Leave out:** PR links, commit names, and release dates. Linear already shows them.
+- **Replies:** put evidence and questions about the update in replies under it. Start a new thread for a later
+  topic, such as metrics after a release.
+- **New content:** add a new comment instead of editing an earlier one, so that readers see the change.
 
-State whether release notes, customer communication, documentation, or internal enablement are required.
+## What to cover
+
+- **Delivered:** the observable change and the issue it satisfies.
+- **Behaviour and compatibility:** what changed, what stayed compatible, data effects, and known limitations.
+- **Verification:** automated coverage, reviewed environments, and customer or account verification.
+- **Follow-ups:** remaining product, UX, documentation, or cleanup work, as linked issues. Do not absorb them into
+  the delivered scope or the acceptance criteria.
+- **Communication:** whether release notes, customer communication, documentation, or internal enablement are
+  required.
