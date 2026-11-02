@@ -25,6 +25,7 @@ Always read:
 
 - `references/issue-sop.md`
 - `references/house-conventions.md`
+- `references/formatting.md`, before you write any text that Linear renders
 
 Before assigning priority, read `references/prioritization-matrix.md`.
 
@@ -45,13 +46,23 @@ Choose one route and read its template:
 
 Do not combine specification and implementation merely to make an issue look complete. A large feature can have a product specification plus one or more linked implementation issues.
 
+Templates are starting points, not forms to fill. Fit the shape to the kind of issue:
+
+- **Bug:** current behaviour, expected behaviour, and steps to reproduce when reproduction is not obvious.
+- **Change to an existing feature:** current and expected behaviour. Nothing to reproduce.
+- **New feature:** describe the ability and its rules. Current behaviour and steps to reproduce do not apply.
+- **Investigation:** what is known, the hypotheses, and the questions the work must answer.
+- **Small change:** one or two sentences and a few acceptance criteria.
+
+Leave out every section that holds nothing. A request with a technical guess is still a request; the guess is not the scope. Add a documentation note when a user-facing behaviour changes.
+
 ## 3. Match the readiness level
 
 - **Intake-ready:** another person can understand, reproduce or route it.
 - **Refinement-ready:** product intent, scope, evidence, dependencies, and blocking decisions are visible. Refinement can focus on decisions instead of reconstructing the request.
 - **Build-ready:** no blocking product questions remain; engineering has a credible implementation and test plan.
 
-If blocking questions remain, collect them in one section and recommend a refinement state. Do not disguise assumptions as requirements or move an issue toward implementation readiness prematurely.
+If blocking questions remain, recommend a refinement state. Ask each blocking question in its own comment thread, so that it can be answered and resolved. When the user wants the questions in the issue during Triage or refinement, collect them in one section and remove that section once they are answered. Do not disguise assumptions as requirements or move an issue toward implementation readiness prematurely.
 
 ## 4. Apply feature-refinement guardrails
 
@@ -91,7 +102,16 @@ Default safeguards:
 - attach screenshots, videos, URLs, and customer/source links;
 - retain prototypes and signed-off artifacts as evidence even when they are no longer the implementation contract.
 
-## 6. Final check
+## 6. Write to Linear
+
+Show the draft and get approval before you create or change anything in Linear, unless the user already approved the exact action.
+
+- Read the issue again right before you write it.
+- Change an existing body with an anchored patch instead of a full rewrite. A full rewrite turns customer, project, document, and label mentions into plain links, and can overwrite edits made in the meantime.
+- Read the saved result back and confirm it before you report success.
+- When an agent writes a comment, start it with a line that says an agent wrote it and for whom.
+
+## 7. Final check
 
 Before submitting, verify:
 
@@ -103,6 +123,8 @@ Before submitting, verify:
 - Is the requested readiness level honest?
 - Can refinement focus on product/technical decisions rather than decoding the issue?
 - For build-ready work, can a developer or coding agent start without inventing missing requirements?
+- Does every section hold something, and does the shape fit the kind of issue?
+- Does the text follow `references/formatting.md`, with no forced line breaks inside paragraphs?
 - Did the output use only sources and live actions available within the user's existing permissions?
 
 When updating an existing issue, summarize what changed and which metadata was deliberately left untouched.

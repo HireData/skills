@@ -4,7 +4,7 @@ Use the maintained team SOP and prioritization matrix as the source of truth. Th
 
 ## Content
 
-- Prefer plain, factual language and short sections.
+- Prefer plain, factual language and short sections. Follow `formatting.md` for how Linear renders text.
 - Match the workspace's established Title Case convention. Prefer **Area: Outcome or Problem** when a stable product area makes the backlog easier to scan, for example **Automations: HTTP Request Task** or **Responses: Add Score Calculation**. Do not force a prefix when the concise product name is clearer, such as **Form Evaluations**.
 - Put each rule in one place; avoid repeating the description in the To do and acceptance criteria.
 - Keep acceptance criteria outcome-level and testable.
@@ -41,17 +41,18 @@ Do not assign or change an estimate unless engineering supplied it or the user e
 
 If these conditions are not met, recommend **To Be Refined** rather than inventing detail or an estimate.
 
-Use the live [How Linear Statuses Work](https://www.notion.so/2dc00d874868809ca942d7f0382d29e4) page when status meaning matters. Current meanings:
+Use the live [How Linear Statuses Work](https://www.notion.so/2dc00d874868809ca942d7f0382d29e4) page when status meaning matters, and list the team's statuses through the Linear MCP when it is connected. The workflow contains these statuses:
 
-- **Backlog:** valid work that is not planned.
 - **Triage:** awaiting completeness, duplicate, and routing review.
+- **Backlog:** valid work that is not planned.
 - **To Be Refined:** missing product or technical information.
 - **To Be Estimated:** approved and awaiting estimate.
 - **Ready to Plan:** approved and awaiting scheduling.
 - **To Do:** selected for the current cycle.
 - **In Progress:** active implementation.
 - **On Staging (Review):** code and functional review.
-- **On Production (QA):** production verification.
-- **Done – No Update:** complete without a public product update; notify relevant customers directly.
-- **Done – Draft Update:** complete and awaiting a public update draft.
-- **Ready to Publish / Published:** product update publication states.
+- **On Production:** released to production.
+- **To Be Tested:** released and awaiting verification on production.
+- **Done – No Update, Done – Update Required, Done – Review Required:** complete. The suffix says whether help-centre documentation or a review still has to follow. Check the live page for the exact meaning.
+- **Published:** the related documentation or product update is published.
+- **Canceled, Duplicate:** closed without delivery. Add a comment with the reason or the original issue.

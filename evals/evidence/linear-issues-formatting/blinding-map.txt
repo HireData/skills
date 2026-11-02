@@ -1,0 +1,6 @@
+linear-issue-feature-shape A=prev B=cand
+linear-issue-update-numbering A=cand B=prev
+linear-issue-rewrite-keeps-mentions A=prev B=cand
+linear-issue-normal A=prev B=cand
+linear-issue-prototype-ambiguity A=prev B=cand
+linear-issue-false-urgency A=cand B=prev

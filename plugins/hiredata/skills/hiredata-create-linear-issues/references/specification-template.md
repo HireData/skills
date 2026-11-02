@@ -1,5 +1,7 @@
 # Product specification template
 
+Use the sections that hold something for this feature. Leave out the rest.
+
 ## Summary and user outcome
 
 Define the reusable product capability, problem, intended users, and linked customer request/use case.
@@ -36,7 +38,7 @@ Describe customer-specific wiring only as a validation case and link the origina
 
 ## Open questions
 
-Collect unresolved decisions. If any block estimation/building, recommend refinement rather than implementation status.
+Collect unresolved decisions while the issue is being refined. Prefer one comment thread per question, so each can be answered and resolved; when the questions stay in the body, remove the section once they are answered. If any block estimation/building, recommend refinement rather than implementation status.
 
 ## Acceptance criteria
 
