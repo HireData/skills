@@ -109,7 +109,7 @@ Show the draft and get approval before you create or change anything in Linear, 
 - Read the issue again right before you write it.
 - Change an existing body with an anchored patch instead of a full rewrite. A full rewrite turns customer, project, document, and label mentions into plain links, and can overwrite edits made in the meantime.
 - Read the saved result back and confirm it before you report success.
-- When an agent writes a comment, start it with a line that says an agent wrote it and for whom.
+- When an agent writes a comment, end it with a plain line that says an agent wrote it and for whom, such as `🤖 Written by <agent and model> on behalf of <person>`. Put the content first and the attribution last, like a commit message trailer.
 
 ## 7. Final check
 

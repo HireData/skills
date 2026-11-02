@@ -31,6 +31,8 @@ One or two sentences on what this update covers.
 - **Replies:** put evidence and questions about the update in replies under it. Start a new thread for a later
   topic, such as metrics after a release.
 - **New content:** add a new comment instead of editing an earlier one, so that readers see the change.
+- **Attribution:** when an agent writes the update, end it with a plain line after an empty line, such as
+  `🤖 Written by <agent and model> on behalf of <person>`. Do not open the comment with it.
 
 ## What to cover
 
