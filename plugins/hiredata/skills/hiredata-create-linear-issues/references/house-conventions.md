@@ -41,7 +41,7 @@ Do not assign or change an estimate unless engineering supplied it or the user e
 
 If these conditions are not met, recommend **To Be Refined** rather than inventing detail or an estimate.
 
-Use the live [How Linear Statuses Work](https://www.notion.so/2dc00d874868809ca942d7f0382d29e4) page when status meaning matters, and list the team's statuses through the Linear MCP when it is connected. The workflow contains these statuses:
+Use the live [How Linear Statuses Work](https://www.notion.so/2dc00d874868809ca942d7f0382d29e4) page when status meaning matters, and list the team's statuses through the Linear MCP when it is connected. Use the list below only as a fallback when neither is available:
 
 - **Triage:** awaiting completeness, duplicate, and routing review.
 - **Backlog:** valid work that is not planned.

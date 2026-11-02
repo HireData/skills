@@ -6,7 +6,7 @@ writer. The second part recommends a style that keeps text easy to read for ever
 
 ## How Linear renders text
 
-These facts were measured in the Linear web app. Apply them to every text you write in Linear.
+These facts were measured in the Linear web app on a wide window in November 2026. The pixel and character figures are approximate and can differ on other surfaces or window sizes; the rules about line breaks and mentions hold everywhere. Re-check the figures when Linear changes its layout.
 
 ### Line width
 
@@ -33,7 +33,7 @@ The others become plain links.
 
 - **Issue key:** a bare `HD-123` becomes a chip that shows the key and the full issue title. It also adds the issue
   as a Related relation. Do not repeat the title next to it.
-- **Issue link:** `[HD-123](<https://linear.app/hiredata/issue/HD-123>)` stays a short link. It adds no relation
+- **Issue link:** `[HD-123](<https://linear.app/<workspace>/issue/HD-123>)` stays a short link. It adds no relation
   and shows no title. Use it inside a sentence.
 - **User:** `@displayName` becomes a user mention and notifies the person, also when it is added in an edit. Look up
   the display name; the full name does not work.
@@ -42,8 +42,8 @@ The others become plain links.
   an agent writes them, Linear stores a plain link. Write a masked link to the item's Linear URL, and ask the user to
   insert the mention in the UI when it matters.
 - **Existing mentions:** rewriting a whole issue body turns its customer, project, document, and label mentions into
-  plain links. Change an existing body with an anchored patch, such as the `patch` option of the Linear MCP
-  `save_issue` tool.
+  plain links. Change an existing body with the Linear MCP's partial-update option when it offers one, instead of
+  sending the whole body again.
 
 ### Markdown
 

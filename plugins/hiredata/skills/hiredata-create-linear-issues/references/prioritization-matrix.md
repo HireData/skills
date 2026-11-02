@@ -2,7 +2,7 @@
 
 This reference summarizes the team matrix as of 2026-08-15. The canonical source is the [Published Issue Prioritisation Manifest](https://www.notion.so/2d200d874868804d8e63fc721309adce) in the SOP database.
 
-**Process owner:** Desi. Propose policy changes against the published source rather than creating a second working copy. When the live page and this cached summary differ, follow the published page and flag that this reference needs refreshing.
+**Process owner:** the Triage owner named on the published page. Propose policy changes against the published source rather than creating a second working copy. When the live page and this cached summary differ, follow the published page and flag that this reference needs refreshing.
 
 ## Urgent
 

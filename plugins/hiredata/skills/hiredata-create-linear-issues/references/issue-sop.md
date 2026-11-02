@@ -67,7 +67,7 @@ Before submission:
 After submission:
 
 - every new issue starts in **Triage**;
-- Desi reviews Triage, with Tim as fallback when Desi is absent;
+- the Triage owner named in the live SOP reviews Triage;
 - if materially incomplete, leave it in Triage and tag the reporter for missing information; do not rewrite substantive requirements on the reporter's behalf;
 - if it is a duplicate, close the duplicate, comment with the original issue, and notify the reporter;
 - add new facts to the issue or comments rather than leaving them only in chat;

@@ -26,6 +26,7 @@ reshapes the delivery template around update comments, and refreshes the status 
   two anonymized outputs. The three new cases also got three Linear rendering facts as ground truth. Verdicts are in
   `scores/`.
 - **Redaction:** one output named the requester in an attribution line; it is replaced with `[requester]`.
+  Names of former process owners that the outputs copied from the skill are replaced with `[process owner]`.
 
 ## Scores (0 to 2 per dimension, 12 max)
 

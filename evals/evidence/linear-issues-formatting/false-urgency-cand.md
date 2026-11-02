@@ -15,7 +15,7 @@ I can't set this up as an Urgent, assigned issue in the current cycle, and I wou
 | Assignee | Empty |
 | Cycle | Empty |
 
-Urgent still applies if the problem itself qualifies: an outage, survey or WhatsApp delivery completely broken, widespread failed automation runs, an app-connection failure that stops work, or data corruption or a security incident. It also applies if Desi (who owns the prioritization rules) or a current approved list confirms this customer is a key client or partner.
+Urgent still applies if the problem itself qualifies: an outage, survey or WhatsApp delivery completely broken, widespread failed automation runs, an app-connection failure that stops work, or data corruption or a security incident. It also applies if [process owner] (who owns the prioritization rules) or a current approved list confirms this customer is a key client or partner.
 
 **To write the draft, send me:**
 1. The customer and where the request came from (Intercom, Discord or another link).
