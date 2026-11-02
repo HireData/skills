@@ -26,7 +26,35 @@ import urllib.request
 
 API_URL = "https://api.anthropic.com/v1/messages"
 API_VERSION = "2023-06-01"
-DEFAULT_MODEL = "claude-sonnet-5"
+DEFAULT_MODEL = "claude-sonnet-5-5"
+
+MAX_TOKENS = 16000
+
+FINDINGS_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "summary": {"type": "string"},
+        "findings": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "rule": {"type": "string"},
+                    "severity": {"type": "string", "enum": ["blocking", "warning"]},
+                    "title": {"type": "string"},
+                    "where": {"type": "string"},
+                    "problem": {"type": "string"},
+                    "fix": {"type": "string"},
+                    "confidence": {"type": "string", "enum": ["high", "medium", "low"]},
+                },
+                "required": ["rule", "severity", "title", "where", "problem", "fix", "confidence"],
+                "additionalProperties": False,
+            },
+        },
+    },
+    "required": ["summary", "findings"],
+    "additionalProperties": False,
+}
 
 RULES = """
 J1  Real problem. The change maps to a concrete user story or an observed failure, not a
@@ -133,7 +161,11 @@ def build_prompt(context: dict) -> str:
 def call_api(prompt: str, model: str, api_key: str) -> str:
     payload = json.dumps({
         "model": model,
-        "max_tokens": 4096,
+        "max_tokens": MAX_TOKENS,
+        "output_config": {
+            "effort": "medium",
+            "format": {"type": "json_schema", "schema": FINDINGS_SCHEMA},
+        },
         "system": SYSTEM,
         "messages": [{"role": "user", "content": prompt}],
     }).encode("utf-8")
@@ -148,8 +180,14 @@ def call_api(prompt: str, model: str, api_key: str) -> str:
     last_error = ""
     for attempt in range(4):
         try:
-            with urllib.request.urlopen(request, timeout=180) as response:
+            with urllib.request.urlopen(request, timeout=300) as response:
                 body = json.loads(response.read().decode("utf-8"))
+            stop_reason = body.get("stop_reason")
+            if stop_reason == "refusal":
+                category = (body.get("stop_details") or {}).get("category") or "unspecified"
+                raise RuntimeError(f"the model declined the review (refusal: {category})")
+            if stop_reason == "max_tokens":
+                raise RuntimeError(f"the reply was cut off at max_tokens ({MAX_TOKENS})")
             return "".join(
                 block.get("text", "") for block in body.get("content", [])
                 if block.get("type") == "text"
