@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Migrate Workspace Assets"
+  short_description: "Migrate a proven HireData setup to another workspace"
+  default_prompt: "Use $hiredata-migrate-workspace-assets to migrate this HireData setup to the target workspace safely."

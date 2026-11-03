@@ -11,7 +11,7 @@ Create the shortest form that captures the decision or signal the workflow needs
 
 1. Identify the audience, use case, preceding trigger or message, language, required decision, and what should happen after submission.
 2. Use the HireData MCP to inspect existing forms, current field types, schemas, theme and brand options, connected workflow context, and duplicate candidates.
-3. Read [references/form-design-patterns.md](references/form-design-patterns.md) for recruitment form patterns and branching guidance.
+3. Read [references/form-design-patterns.md](references/form-design-patterns.md) for recruitment form patterns and branching guidance, and [references/mcp-editing-gotchas.md](references/mcp-editing-gotchas.md) before editing an existing or published form.
 4. Do not ask again for data already known from the trigger, person, application, meeting, vacancy, or preceding quick reply.
 5. Show a preview before creating:
    - form name, audience, context, and language;
@@ -27,6 +27,8 @@ Create the shortest form that captures the decision or signal the workflow needs
 ## Guardrails
 
 - Use the current MCP schema instead of manufacturing raw editor JSON.
+- Bind choice fields that mirror ATS data (levels, stages, motives) to a data source instead of static options, and have label fixes made in the source system.
+- Treat translation and evaluation updates as full replacements: fetch the current content, merge, and resend it complete.
 - Mark a field required only when the form's purpose cannot be fulfilled without it.
 - Keep feedback forms short and screening forms decisive.
 - End every path with a clear next step, not an unsupported promise.
