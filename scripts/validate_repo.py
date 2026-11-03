@@ -13,6 +13,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_DIR = ROOT / "plugins" / "hiredata"
 SKILLS_DIR = PLUGIN_DIR / "skills"
+KNOWN_ATS = {"carerix", "bullhorn", "salesforce", "vincere", "mysolution", "spott", "recruitee"}
 NAME_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SEMVER_PATTERN = re.compile(r"^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$")
 LINK_PATTERN = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
@@ -171,6 +172,63 @@ class Validator:
             self.fail("the plugin must contain at least five skills")
         return names
 
+    def validate_catalog(self, skill_names: set[str]) -> None:
+        path = ROOT / "catalog" / "use-cases.json"
+        if not path.is_file():
+            self.fail("catalog/use-cases.json is missing")
+            return
+        catalog = self.load_json(path)
+        if not isinstance(catalog, dict) or not isinstance(catalog.get("useCases"), list):
+            self.fail("catalog/use-cases.json must contain a useCases list")
+            return
+        slugs: set[str] = set()
+        build_skills_in_catalog: set[str] = set()
+        for row in catalog["useCases"]:
+            slug = str(row.get("slug", ""))
+            if not re.fullmatch(r"[a-z][a-z0-9-]{1,63}", slug):
+                self.fail(f"catalog row has an invalid slug: {slug!r}")
+            if slug in slugs:
+                self.fail(f"duplicate catalog slug: {slug}")
+            slugs.add(slug)
+            for field in ("name", "group", "website", "buildSkill", "templateIds", "scanFindings", "intake", "library", "ats"):
+                if field not in row:
+                    self.fail(f"catalog row {slug} is missing {field}")
+            if row.get("group") not in {"applicants", "database", "data"}:
+                self.fail(f"catalog row {slug} has an invalid group")
+            website = row.get("website")
+            if website is not None and not str(website).endswith(f"/examples/{slug}"):
+                self.fail(f"catalog row {slug} website must end with /examples/{slug}")
+            build = row.get("buildSkill")
+            if build is not None:
+                build_skills_in_catalog.add(str(build))
+                if not str(build).startswith("hiredata-build-"):
+                    self.fail(f"catalog row {slug} buildSkill must be a hiredata-build-* skill")
+            ats = row.get("ats")
+            if not isinstance(ats, dict):
+                self.fail(f"catalog row {slug} ats must be an object keyed by ATS handle")
+            else:
+                for app, entry in ats.items():
+                    if app not in KNOWN_ATS:
+                        self.fail(f"catalog row {slug} has an unknown ATS key: {app}")
+                    if not isinstance(entry, dict) or "reference" not in entry or "video" not in entry:
+                        self.fail(f"catalog row {slug} ats.{app} must have reference and video")
+                        continue
+                    reference = entry.get("reference")
+                    if reference is not None:
+                        if build is None:
+                            self.fail(f"catalog row {slug} ats.{app} has a reference but no buildSkill")
+                        elif not re.fullmatch(r"references/[a-z0-9-]+\.md", str(reference)):
+                            self.fail(f"catalog row {slug} ats.{app} reference must be references/<file>.md inside the build skill")
+                        elif not (SKILLS_DIR / str(build) / str(reference)).is_file() and (SKILLS_DIR / str(build)).is_dir():
+                            self.fail(f"catalog row {slug} ats.{app} reference {reference} does not exist in {build}")
+        for name in sorted(skill_names):
+            if name.startswith("hiredata-build-") and name not in build_skills_in_catalog:
+                self.fail(f"{name} has no catalog row in catalog/use-cases.json")
+        for name in sorted(build_skills_in_catalog):
+            if name not in skill_names:
+                # a planned build skill may be listed before it exists; only warn via stdout
+                print(f"note: catalog references build skill {name} that is not in the plugin yet")
+
     def validate_marketplace(self) -> None:
         path = ROOT / ".agents" / "plugins" / "marketplace.json"
         marketplace = self.load_json(path)
@@ -290,6 +348,7 @@ class Validator:
         self.validate_marketplace()
         self.validate_claude_manifests()
         self.validate_evals(skill_names)
+        self.validate_catalog(skill_names)
         if self.errors:
             print("Validation failed:")
             for error in self.errors:
