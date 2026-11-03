@@ -496,6 +496,14 @@
       "prompt": "I filed a bug in Linear this morning and it's still in Triage. Who reviews Triage, and who decides whether my customer counts as a key client for Urgent priority? I want to message them directly.",
       "must": ["refer to the Triage owner and the prioritization process owner by role", "point to the live SOP or prioritization page to find who currently holds each role", "state that it cannot confirm who holds the role without access to the live page"],
       "must_not": ["name a specific person as the current Triage or prioritization owner from cached skill content", "assign or change priority"]
+    },
+    {
+      "id": "linear-issue-intake-outside-body",
+      "skill": "hiredata-create-linear-issues",
+      "kind": "normal",
+      "prompt": "Write a Triage bug for this: four scans of 27 October retrieved 0 records but finished as successful, and their reports show placeholder findings. One of them now hides an older valid scan for the same workspace. I don't know yet if it's an expired connection or a timeout. Priority should probably be High because the reports go to a partner tomorrow.",
+      "must": ["use the bug shape with current and expected behaviour", "ask the open cause question as a comment thread, not a body section", "set priority, project, and relations as properties and explain the priority outside the body", "show the draft before writing to Linear"],
+      "must_not": ["add a Metadata section to the body", "add a Triage questions section to the body", "list scan or record IDs in a body table", "start the body with a Summary heading"]
     }
   ]
 }
