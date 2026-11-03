@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "description": "One row per HireData use case. The slug is the canonical identifier shared by the website (/examples/<slug>), the library, the scan skill and the build skills. ATS-specific parts (the wiring reference inside the build skill and the walkthrough video) live under ats, one entry per supported ATS. Null means not available yet; never guess a value.",
+  "useCases": [
+    {"slug": "pre-screening", "name": "Pre-screening", "group": "applicants", "website": "https://www.hiredata.com/examples/pre-screening", "buildSkill": "hiredata-build-prescreening", "templateIds": [], "scanFindings": ["candidates.newInWindow", "matches.unresponsive"], "intake": null, "library": null, "ats": {}},
+    {"slug": "ad-inflow", "name": "Ad inflow", "group": "applicants", "website": "https://www.hiredata.com/examples/ad-inflow", "buildSkill": null, "templateIds": [], "scanFindings": [], "intake": null, "library": null, "ats": {}},
+    {"slug": "match-score", "name": "Matching", "group": "applicants", "website": "https://www.hiredata.com/examples/match-score", "buildSkill": null, "templateIds": [], "scanFindings": ["matches.newInWindow"], "intake": null, "library": null, "ats": {}},
+    {"slug": "interview", "name": "Interview scheduling", "group": "applicants", "website": "https://www.hiredata.com/examples/interview", "buildSkill": null, "templateIds": [], "scanFindings": [], "intake": null, "library": null, "ats": {}},
+    {"slug": "intake", "name": "Intake scheduling", "group": "applicants", "website": "https://www.hiredata.com/examples/intake", "buildSkill": null, "templateIds": [], "scanFindings": [], "intake": null, "library": null, "ats": {}},
+    {"slug": "cv-collection", "name": "CV collection", "group": "applicants", "website": "https://www.hiredata.com/examples/cv-collection", "buildSkill": null, "templateIds": [], "scanFindings": ["candidates.hasCv"], "intake": null, "library": null, "ats": {}},
+    {"slug": "reactivation", "name": "Database reactivation", "group": "database", "website": "https://www.hiredata.com/examples/reactivation", "buildSkill": null, "templateIds": [75, 164, 23], "scanFindings": ["candidates.dormant180365", "candidates.dormant365Plus", "candidates.isAvailable"], "intake": null, "library": null, "ats": {}},
+    {"slug": "talent-pool", "name": "Talent pool first", "group": "database", "website": "https://www.hiredata.com/examples/talent-pool", "buildSkill": null, "templateIds": [], "scanFindings": ["vacancies.newInWindow"], "intake": null, "library": null, "ats": {}},
+    {"slug": "job-alerts", "name": "Job alerts", "group": "database", "website": "https://www.hiredata.com/examples/job-alerts", "buildSkill": "hiredata-build-job-alerts", "templateIds": [1], "scanFindings": ["vacancies.isOpen", "matches.unresponsive"], "intake": null, "library": null, "ats": {}},
+    {"slug": "candidate-alerts", "name": "Candidate alerts", "group": "database", "website": "https://www.hiredata.com/examples/candidate-alerts", "buildSkill": null, "templateIds": [], "scanFindings": ["contacts.hasValidEmail"], "intake": null, "library": null, "ats": {}},
+    {"slug": "client-reactivation", "name": "Client reactivation", "group": "database", "website": "https://www.hiredata.com/examples/client-reactivation", "buildSkill": null, "templateIds": [], "scanFindings": ["clients.dormant365Plus", "clients.dormantWithPlacements"], "intake": null, "library": null, "ats": {}},
+    {"slug": "nps", "name": "NPS survey", "group": "database", "website": "https://www.hiredata.com/examples/nps", "buildSkill": null, "templateIds": [], "scanFindings": ["placements.newInWindow"], "intake": null, "library": null, "ats": {}},
+    {"slug": "publications", "name": "Fresh vacancies", "group": "database", "website": "https://www.hiredata.com/examples/publications", "buildSkill": "hiredata-build-publications", "templateIds": [], "scanFindings": ["vacancies.isOpen"], "intake": null, "library": null, "ats": {}},
+    {"slug": "gdpr", "name": "GDPR consent", "group": "data", "website": "https://www.hiredata.com/examples/gdpr", "buildSkill": null, "templateIds": [61], "scanFindings": ["candidates.isConsenting"], "intake": null, "library": null, "ats": {}},
+    {"slug": "contact-enrichment", "name": "Contact enrichment", "group": "data", "website": "https://www.hiredata.com/examples/contact-enrichment", "buildSkill": null, "templateIds": [], "scanFindings": ["contacts.hasValidEmail", "contacts.hasPhone"], "intake": null, "library": null, "ats": {}},
+    {"slug": "logging", "name": "Conversation logging", "group": "data", "website": "https://www.hiredata.com/examples/logging", "buildSkill": null, "templateIds": [], "scanFindings": [], "intake": null, "library": null, "ats": {}},
+    {"slug": "meeting-reminders", "name": "Meeting reminders", "group": "applicants", "website": null, "buildSkill": "hiredata-build-meeting-reminders", "templateIds": [199], "scanFindings": [], "intake": null, "library": null, "ats": {}}
+  ],
+  "fields": {
+    "slug": "Canonical identifier. Matches the website path /examples/<slug> when the use case is public.",
+    "group": "applicants (every applicant handled), database (your database working), data (your ATS clean and legal).",
+    "buildSkill": "Name of the hiredata-build-<slug> skill that configures this use case, or null until it exists. One skill per use case; ATS differences go in its references, not in separate skills.",
+    "templateIds": "HireData template library IDs that implement the use case, as returned by the scan's recommendedTemplates.",
+    "scanFindings": "Scan section fields (section.field) that point at this use case when they are weak or strong.",
+    "intake": "Self-service intake URL (chat) that collects the customer's configuration.",
+    "library": "Library item URL with proof, objections and comparisons.",
+    "ats": "One entry per ATS the use case is worked out for, keyed by the HireData core app handle (carerix, bullhorn, salesforce, vincere, mysolution, spott, recruitee). Each entry has reference (path of the ATS wiring file inside the build skill, relative to the skill directory) and video (public walkthrough URL). An empty object means no ATS is worked out yet."
+  }
+}
