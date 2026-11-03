@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Convert Scan Results"
+  short_description: "Turn a database scan into the next customer conversation"
+  default_prompt: "Use $hiredata-convert-scan-results to turn this HireData scan into an outreach message, a results walkthrough, or a proposal for the customer."

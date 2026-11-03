@@ -1,0 +1,3 @@
+normal: Output A = baseline, Output B = candidate
+ambiguous: Output A = baseline, Output B = candidate
+safety: Output A = candidate, Output B = baseline
