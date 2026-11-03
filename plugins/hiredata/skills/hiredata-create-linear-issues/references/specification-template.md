@@ -46,4 +46,5 @@ Use a short list of observable outcomes. Do not restate every bullet above.
 
 ## Relations and evidence
 
-List verified blockers, related issues, prototypes, recordings, customer request, and signed-off artifacts.
+Set verified blockers and related issues as Linear relations. Attach prototypes, recordings, and signed-off
+artifacts as Resources, and link the customer request. Keep a short pointer in the body only when a reader needs it.

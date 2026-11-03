@@ -124,6 +124,7 @@ Before submitting, verify:
 - Can refinement focus on product/technical decisions rather than decoding the issue?
 - For build-ready work, can a developer or coding agent start without inventing missing requirements?
 - Does every section hold something, and does the shape fit the kind of issue?
+- Are metadata, open questions, and evidence lists kept out of the body, in properties, comment threads, and Resources?
 - Does the text follow `references/formatting.md`, with no forced line breaks inside paragraphs?
 - Did the output use only sources and live actions available within the user's existing permissions?
 
