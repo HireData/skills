@@ -41,6 +41,7 @@ A use case is the same job in every ATS; what differs is the wiring: field names
 - `hiredata-report-automation-roi`: report what live automations actually delivered, over the period they have genuinely been running.
 - `hiredata-test-forms-and-emails`: audit a form or email template against normal, missing, and invalid inputs before activation.
 - `hiredata-convert-scan-results`: turn a database scan into an outreach message, a results walkthrough, or a proposal, on any ATS.
+- `hiredata-migrate-workspace-assets`: rebuild a proven setup in another workspace or ATS tenant, re-mapping tenant-specific fields and values instead of copying them.
 - `designing-interfaces`: design new interfaces or redesign existing ones toward simple, user-friendly results, with the reasoning behind each change.
 
 The first five are distilled from HireData's pre-MCP project prompts. Treat them as a tested starting point, then validate consequential behavior against a non-production HireData workspace before relying on them operationally.
