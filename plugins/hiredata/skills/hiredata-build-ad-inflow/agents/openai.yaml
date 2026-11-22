@@ -1,0 +1,4 @@
+interface:
+  display_name: "HireData Build Ad Inflow"
+  short_description: "Turn advertising leads into linked ATS applications"
+  default_prompt: "Use $hiredata-build-ad-inflow to build an inactive workflow that turns incoming advertising leads into applications for the correct vacancies."
