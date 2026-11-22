@@ -18,7 +18,7 @@
     {"slug": "gdpr", "name": "GDPR consent", "group": "data", "website": "https://www.hiredata.com/examples/gdpr", "buildSkill": null, "templateIds": [61], "scanFindings": ["candidates.isConsenting"], "intake": null, "library": null, "ats": {}},
     {"slug": "contact-enrichment", "name": "Contact enrichment", "group": "data", "website": "https://www.hiredata.com/examples/contact-enrichment", "buildSkill": null, "templateIds": [], "scanFindings": ["contacts.hasValidEmail", "contacts.hasPhone"], "intake": null, "library": null, "ats": {}},
     {"slug": "logging", "name": "Conversation logging", "group": "data", "website": "https://www.hiredata.com/examples/logging", "buildSkill": null, "templateIds": [], "scanFindings": [], "intake": null, "library": null, "ats": {}},
-    {"slug": "meeting-reminders", "name": "Meeting reminders", "group": "applicants", "website": null, "buildSkill": "hiredata-build-meeting-reminders", "templateIds": [199], "scanFindings": [], "intake": null, "library": null, "ats": {}}
+    {"slug": "meeting-reminders", "name": "Meeting reminders", "group": "applicants", "website": null, "buildSkill": "hiredata-build-meeting-reminders", "templateIds": [199], "scanFindings": [], "intake": null, "library": null, "ats": {"carerix": {"reference": "references/carerix.md", "video": null}}}
   ],
   "fields": {
     "slug": "Canonical identifier. Matches the website path /examples/<slug> when the use case is public.",
