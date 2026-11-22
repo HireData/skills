@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build meeting reminders"
+  short_description: "Build reminders for already-booked candidate meetings"
+  default_prompt: "Use $hiredata-build-meeting-reminders to build an inactive reminder for booked candidate meetings and verify the audience, timing, mappings and handling of changed appointments."
