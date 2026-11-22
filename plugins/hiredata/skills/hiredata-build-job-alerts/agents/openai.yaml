@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build HireData Job Alerts"
+  short_description: "Build candidate alerts for a matched vacancy"
+  default_prompt: "Use $hiredata-build-job-alerts to draft a candidate job alert for the vacancy on an existing match."
